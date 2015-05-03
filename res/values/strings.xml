@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Sensor Data</string>
+    
+    <string name="app_name">RobAlim</string>
+    <string name="red">Value</string>
+    <string name="led">LED CONTROLLER</string>
+      <string name="pwm">PWM Value</string>
+      <string name="pwm_value:">PWM Value:</string>
+    
+</resources>
