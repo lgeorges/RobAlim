@@ -136,7 +136,6 @@ public class MainActivity extends Activity implements OnSeekBarChangeListener {
 		Amarino.sendDataToArduino(this, UserInputGraph.DEVICE_ADDRESS, 'o', red);
 	}
 	
-
 	/**
 	 * ArduinoReceiver is responsible for catching broadcasted Amarino
 	 * events.
