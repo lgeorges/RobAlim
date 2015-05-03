@@ -165,6 +165,7 @@ public class MainActivity extends Activity implements OnSeekBarChangeListener {
 					mValueTV.setText(data);
 					try {
 						// since we know that our string value is an int number we can parse it to an integer
+						
 						final int sensorReading = Integer.parseInt(data);
 						mGraph.addDataPoint(sensorReading);
 					} 
