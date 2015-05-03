@@ -139,7 +139,6 @@ public class MainActivity extends Activity implements OnSeekBarChangeListener {
 	/**
 	 * ArduinoReceiver is responsible for catching broadcasted Amarino
 	 * events.
-	 * 
 	 * It extracts data from the intent and updates the graph accordingly.
 	 */
 	public class ArduinoReceiver extends BroadcastReceiver {
