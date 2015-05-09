@@ -1,4 +1,7 @@
-package com.example.robalim;
+package com.arduino.robalim;
+
+import com.arduino.robalim.view.Menu;
+import com.example.robalim.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -47,8 +50,9 @@ public class UserInputGraph extends Activity implements OnClickListener {
 			.edit()
 				.putString("device", DEVICE_ADDRESS)
 					.commit();
-		Amarino.connect(this, DEVICE_ADDRESS);
-		Intent i = new Intent(this, MainActivity.class);
+//		Amarino.connect(this, DEVICE_ADDRESS);
+//		Intent i = new Intent(this, MainActivity.class);
+		Intent i = new Intent(this, Menu.class);
     	startActivity(i);
 	}
 	

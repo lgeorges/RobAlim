@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".UserInputGraph"
+            android:name="com.arduino.robalim.UserInputGraph"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +23,12 @@
             </intent-filter>
         </activity>
         <activity  android:name="MainActivity"></activity>
-    </application>
+        <activity  android:name="com.arduino.robalim.view.Menu"></activity>
+        <activity  android:name="com.arduino.robalim.view.MenuTest"></activity>
+        <activity  android:name="com.arduino.robalim.view.MenuDeplacement"></activity>
+        <activity  android:name="com.arduino.robalim.view.MenuActions"></activity>
+        <activity  android:name="com.arduino.robalim.view.MenuCaptions"></activity>
+        
+</application>
 
 </manifest>

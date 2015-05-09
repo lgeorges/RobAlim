@@ -1,4 +1,6 @@
-package com.example.robalim;
+package com.arduino.robalim;
+
+import com.example.robalim.R;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;

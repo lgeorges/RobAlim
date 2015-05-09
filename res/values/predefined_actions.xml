@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="actions_array">
+        <item>Programme 1</item>
+        <item>Programme 2</item>
+        <item>Programme 3</item>
+    </string-array>
+</resources>

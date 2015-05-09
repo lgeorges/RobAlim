@@ -1,4 +1,4 @@
-package com.example.robalim;
+package com.arduino.robalim;
 
 import android.content.Context;
 import android.graphics.Bitmap;
