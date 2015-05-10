@@ -58,9 +58,9 @@ public class Menu extends Activity implements Observer{
 			@Override
 			public void onClick(View v) {
 				if(mode_button.isChecked())
-					robot_out.setModeAuto();
+					robot_out.setModeAuto(menu_activity);
 				else	
-					robot_out.setModeManuel();
+					robot_out.setModeManuel(menu_activity);
 			}
 		});
         

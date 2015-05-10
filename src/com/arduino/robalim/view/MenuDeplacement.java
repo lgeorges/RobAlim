@@ -14,13 +14,14 @@ import com.example.robalim.R;
 public class MenuDeplacement extends Activity {
 
 	private RobAlimInterfaceOut robot_out;
+	private Activity activity;
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         robot_out=RobAlimInterfaceOut.getInstance();
         
         setContentView(R.layout.menu_deplacement);
-        
+        activity=this;
         Button button_go = (Button)findViewById(R.id.button_go);
         Button button_left = (Button)findViewById(R.id.button_left);
         Button button_right = (Button)findViewById(R.id.button_right);
@@ -32,9 +33,9 @@ public class MenuDeplacement extends Activity {
         	@Override
         	public void onClick(View v) {
         		if(vitesse_rapide.isChecked())
-        			robot_out.avancerRapidement();
+        			robot_out.avancerRapidement(activity);
         		else
-        			robot_out.avancer();
+        			robot_out.avancer(activity);
         	}
         });
         
@@ -44,9 +45,9 @@ public class MenuDeplacement extends Activity {
         	@Override
         	public void onClick(View v) {
         		if(vitesse_rapide.isChecked())
-        			robot_out.tournerAGaucheRapidement();
+        			robot_out.tournerAGaucheRapidement(activity);
         		else
-        			robot_out.tournerAGauche();
+        			robot_out.tournerAGauche(activity);
         	}
         });
         
@@ -56,9 +57,9 @@ public class MenuDeplacement extends Activity {
         	@Override
         	public void onClick(View v) {
         		if(vitesse_rapide.isChecked())
-        			robot_out.tournerADroiteRapidement();
+        			robot_out.tournerADroiteRapidement(activity);
         		else
-        			robot_out.tournerADroite();
+        			robot_out.tournerADroite(activity);
         	}
         });
         
@@ -67,7 +68,7 @@ public class MenuDeplacement extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-					robot_out.stopper();
+					robot_out.stopper(activity);
 			}
 		});
        

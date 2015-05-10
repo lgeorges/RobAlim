@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 public class MenuActions extends Activity implements Observer{
 	
-	private Activity menu_activity;
+	private Activity activity;
 	private RobAlimInterfaceOut robot_out;
 	private RobAlimInterfaceIn robot_in;
 	private Button send_action_button;
@@ -31,7 +31,7 @@ public class MenuActions extends Activity implements Observer{
         robot_in= RobAlimInterfaceIn.getInstance();
         robot_in.addObserver(this);
 
-        menu_activity=this;
+        activity=this;
 
         final Spinner spinner = (Spinner) findViewById(R.id.select_action);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.actions_array, android.R.layout.simple_spinner_item);
@@ -46,7 +46,7 @@ public class MenuActions extends Activity implements Observer{
 			@Override
 			public void onClick(View v) {
 				String action=spinner.getSelectedItem().toString();
-				robot_out.envoyerAction(action);
+				robot_out.envoyerAction(activity, action);
 			}
 		});
 	}
