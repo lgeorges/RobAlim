@@ -38,7 +38,7 @@ public class UserInputGraph extends Activity implements OnClickListener {
         // register listeners
         button.setOnClickListener(this);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        DEVICE_ADDRESS = prefs.getString("device", "20:14:12:23:10:41");
+        DEVICE_ADDRESS = prefs.getString("device", "20:14:12:23:10:40");
         idField.setText(DEVICE_ADDRESS);
     }
     
@@ -50,7 +50,7 @@ public class UserInputGraph extends Activity implements OnClickListener {
 			.edit()
 				.putString("device", DEVICE_ADDRESS)
 					.commit();
-//		Amarino.connect(this, DEVICE_ADDRESS);
+		Amarino.connect(this, DEVICE_ADDRESS);
 //		Intent i = new Intent(this, MainActivity.class);
 		Intent i = new Intent(this, Menu.class);
     	startActivity(i);
