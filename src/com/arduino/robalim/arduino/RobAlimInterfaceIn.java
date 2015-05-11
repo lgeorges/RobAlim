@@ -18,7 +18,6 @@ public class RobAlimInterfaceIn extends Observable {
 	
 	public RobAlimInterfaceIn(){
 		mode="manuel";
-		arduino_receiver=new ArduinoReceiver();
 //		registerReceiver(arduino_receiver, new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
 	}
 	
@@ -45,10 +44,16 @@ public class RobAlimInterfaceIn extends Observable {
 		return ultrason_values;
 	}
 	
+	public void setArduinoReceiver(ArduinoReceiver r){
+		this.arduino_receiver=r;
+		Log.i("RobAlimIn","set arduino receiver "+r);
+	}
 	public void updateData(int data_type, String data){
 //		action=data;
 		String[] parts = data.split("/");
 		String identifiant = parts[0]; // 004
+		
+		Log.i("RobAlimIn","id: "+parts[0]+" data"+parts[1]);
 		
 		if(identifiant.equalsIgnoreCase("mode"))
 			mode = parts[1];

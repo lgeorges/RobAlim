@@ -1,5 +1,7 @@
 package com.arduino.robalim;
 
+import com.arduino.robalim.arduino.ArduinoReceiver;
+import com.arduino.robalim.arduino.RobAlimInterfaceIn;
 import com.arduino.robalim.view.Menu;
 import com.example.robalim.R;
 
@@ -20,7 +22,7 @@ public class UserInputGraph extends Activity implements OnClickListener {
 	private static final String TAG = "SensorGraph";
 	
 	public static String DEVICE_ADDRESS;
-	
+	private RobAlimInterfaceIn robot_in;
 	EditText idField;
 	Button button;
 	
@@ -31,7 +33,7 @@ public class UserInputGraph extends Activity implements OnClickListener {
         setContentView(R.layout.input);
         
         Log.d(TAG, "Main onStart");
-        
+        robot_in=RobAlimInterfaceIn.getInstance();
         // get references to views defined in our main.xml layout file
         idField = (EditText) findViewById(R.id.deviceIDField);
         button = (Button) findViewById(R.id.okButton);
@@ -51,6 +53,7 @@ public class UserInputGraph extends Activity implements OnClickListener {
 				.putString("device", DEVICE_ADDRESS)
 					.commit();
 		Amarino.connect(this, DEVICE_ADDRESS);
+		robot_in.setArduinoReceiver(new ArduinoReceiver());
 //		Intent i = new Intent(this, MainActivity.class);
 		Intent i = new Intent(this, Menu.class);
     	startActivity(i);

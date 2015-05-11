@@ -82,6 +82,7 @@ public class Menu extends Activity implements Observer{
 	@Override
 	protected void onStart() {
 		super.onStart();
+		Log.i("Menu","receiver "+robot_in.getArduinoReceiver());
 		registerReceiver(robot_in.getArduinoReceiver(), new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
         this.update(null,null);
 	};
