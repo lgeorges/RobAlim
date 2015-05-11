@@ -5,11 +5,13 @@ import com.arduino.robalim.arduino.RobAlimInterfaceOut;
 import com.example.robalim.R;
 
 import android.app.Activity;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Switch;
+import at.abraxas.amarino.AmarinoIntent;
 
 public class Tests extends Activity {
 private RobAlimInterfaceIn robot_in;
@@ -70,4 +72,17 @@ private RobAlimInterfaceIn robot_in;
         	}
         });
 	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		registerReceiver(robot_in.getArduinoReceiver(), new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
+	};
+	
+	@Override 
+	protected void onStop() {
+		super.onStop();
+		unregisterReceiver(robot_in.getArduinoReceiver());
+	};
+	
 }

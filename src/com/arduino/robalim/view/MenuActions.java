@@ -8,6 +8,7 @@ import com.arduino.robalim.arduino.RobAlimInterfaceOut;
 import com.example.robalim.R;
 
 import android.app.Activity;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import at.abraxas.amarino.AmarinoIntent;
 
 public class MenuActions extends Activity implements Observer{
 	
@@ -51,6 +53,20 @@ public class MenuActions extends Activity implements Observer{
 		});
 	}
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+		registerReceiver(robot_in.getArduinoReceiver(), new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
+        this.update(null,null);
+	};
+	
+	@Override 
+	protected void onStop() {
+		super.onStop();
+		robot_in.deleteObserver(this);
+		unregisterReceiver(robot_in.getArduinoReceiver());
+	};
+	
 	@Override
 	public void update(Observable observable, Object data) {
 		String action = robot_in.getAction();

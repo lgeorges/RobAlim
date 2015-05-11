@@ -1,23 +1,28 @@
 package com.arduino.robalim.view;
 
+import com.arduino.robalim.arduino.RobAlimInterfaceIn;
 import com.example.robalim.R;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import at.abraxas.amarino.AmarinoIntent;
 
 public class MenuTest extends Activity {
 	
 	private Activity menu_activity;
+	private RobAlimInterfaceIn robot_in;
 
 	public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        
 	        menu_activity=this;
+	        robot_in = RobAlimInterfaceIn.getInstance();
 	        
 	        setContentView(R.layout.menu_test);
 	        Button move_button=(Button)findViewById(R.id.move_button);
@@ -56,6 +61,18 @@ public class MenuTest extends Activity {
 					
 				}
 			});
-
 	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		registerReceiver(robot_in.getArduinoReceiver(), new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
+	};
+	
+	@Override 
+	protected void onStop() {
+		super.onStop();
+		unregisterReceiver(robot_in.getArduinoReceiver());
+	};
+	
 }

@@ -7,11 +7,13 @@ import com.arduino.robalim.arduino.RobAlimInterfaceIn;
 import com.example.robalim.R;
 
 import android.app.Activity;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import at.abraxas.amarino.AmarinoIntent;
 
 public class MenuCaptions extends Activity implements Observer {
 
@@ -25,7 +27,7 @@ public class MenuCaptions extends Activity implements Observer {
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.caption_view);
+        setContentView(R.layout.captions_view);
 
         robot_in= RobAlimInterfaceIn.getInstance();
         robot_in.addObserver(this);
@@ -37,12 +39,25 @@ public class MenuCaptions extends Activity implements Observer {
         inductif_2=(TextView)findViewById(R.id.inductif_value_2);
         
         int test[]=robot_in.getUltrasonValues();
-        this.update(null, null);
         Log.i("Test","onCreate "+test[0]);
 //        ultrason_0.setText("106");
         
 	}
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+		registerReceiver(robot_in.getArduinoReceiver(), new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
+        this.update(null, null);
+	};
+	
+	@Override 
+	protected void onStop() {
+		super.onStop();
+		robot_in.deleteObserver(this);
+		unregisterReceiver(robot_in.getArduinoReceiver());
+	};
+	
 	@Override
 	public void update(Observable observable, Object data) {
 		int [] ultrasons = robot_in.getUltrasonValues();

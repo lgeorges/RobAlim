@@ -1,12 +1,15 @@
 package com.arduino.robalim.view;
 
 import android.app.Activity;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Switch;
+import at.abraxas.amarino.AmarinoIntent;
 
+import com.arduino.robalim.arduino.RobAlimInterfaceIn;
 import com.arduino.robalim.arduino.RobAlimInterfaceOut;
 import com.example.robalim.R;
 
@@ -15,10 +18,12 @@ public class MenuDeplacement extends Activity {
 
 	private RobAlimInterfaceOut robot_out;
 	private Activity activity;
+	private RobAlimInterfaceIn robot_in;
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         robot_out=RobAlimInterfaceOut.getInstance();
+        robot_in=RobAlimInterfaceIn.getInstance();
         
         setContentView(R.layout.menu_deplacement);
         activity=this;
@@ -73,4 +78,17 @@ public class MenuDeplacement extends Activity {
 		});
        
 	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		registerReceiver(robot_in.getArduinoReceiver(), new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
+	};
+	
+	@Override 
+	protected void onStop() {
+		super.onStop();
+		unregisterReceiver(robot_in.getArduinoReceiver());
+	};
+	
 }

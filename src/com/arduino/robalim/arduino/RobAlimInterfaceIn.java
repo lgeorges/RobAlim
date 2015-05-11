@@ -2,7 +2,9 @@ package com.arduino.robalim.arduino;
 
 import java.util.Observable;
 
+import android.content.IntentFilter;
 import android.util.Log;
+import at.abraxas.amarino.AmarinoIntent;
 
 public class RobAlimInterfaceIn extends Observable {
 	
@@ -12,11 +14,18 @@ public class RobAlimInterfaceIn extends Observable {
 	private String action;
 	private int[] inductif_values = {0,0,0};
 	private int[] ultrason_values = {0,0};
+	private ArduinoReceiver arduino_receiver;
 	
 	public RobAlimInterfaceIn(){
 		mode="manuel";
+		arduino_receiver=new ArduinoReceiver();
+//		registerReceiver(arduino_receiver, new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
 	}
 	
+	public ArduinoReceiver getArduinoReceiver() {
+		return arduino_receiver;
+	}
+
 	public static RobAlimInterfaceIn getInstance(){
 		return instance;
 	}
