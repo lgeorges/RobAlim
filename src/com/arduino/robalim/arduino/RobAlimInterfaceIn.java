@@ -13,7 +13,9 @@ public class RobAlimInterfaceIn extends Observable {
 	private String statut;
 	private String action;
 	private int[] inductif_values = {0,0,0};
+	private int[] inductif_means = {0,0,0};
 	private int[] ultrason_values = {0,0};
+	private int[] ultrason_means = {0,0};
 	private ArduinoReceiver arduino_receiver;
 	
 	public RobAlimInterfaceIn(){
@@ -43,6 +45,12 @@ public class RobAlimInterfaceIn extends Observable {
 	public int[] getUltrasonValues() {
 		return ultrason_values;
 	}
+	public int[] getInductifMeans() {
+		return inductif_means;
+	}
+	public int[] getUltrasonMeans() {
+		return ultrason_means;
+	}
 	
 	public void setArduinoReceiver(ArduinoReceiver r){
 		this.arduino_receiver=r;
@@ -65,18 +73,28 @@ public class RobAlimInterfaceIn extends Observable {
 			statut = parts[1];
 		
 		else if(identifiant.equalsIgnoreCase("ultrasons")){
-			if(parts[1].equals("0"))
+			if(parts[1].equals("i0"))
 				ultrason_values[0] = Integer.parseInt(parts[2]);
-			if(parts[1].equals("1"))
+			if(parts[1].equals("i1"))
 				ultrason_values[1] = Integer.parseInt(parts[2]);
+			if(parts[1].equals("m0"))
+				ultrason_means[0] = Integer.parseInt(parts[2]);
+			if(parts[1].equals("m1"))
+				ultrason_means[1] = Integer.parseInt(parts[2]);
 		}
 		else if(identifiant.equalsIgnoreCase("inductifs")){
-			if(parts[1].equals("0"))
+			if(parts[1].equals("i0"))
 				inductif_values[0] = Integer.parseInt(parts[2]);
-			if(parts[1].equals("1"))
+			if(parts[1].equals("i1"))
 				inductif_values[1] = Integer.parseInt(parts[2]);
-			if(parts[1].equals("2"))
+			if(parts[1].equals("i2"))
 				inductif_values[2] = Integer.parseInt(parts[2]);
+			if(parts[1].equals("m0"))
+				inductif_means[0] = Integer.parseInt(parts[2]);
+			if(parts[1].equals("m1"))
+				inductif_means[1] = Integer.parseInt(parts[2]);
+			if(parts[1].equals("m2"))
+				inductif_means[2] = Integer.parseInt(parts[2]);
 		}
 		
 		Log.i("RobAlimInfoIn",data);

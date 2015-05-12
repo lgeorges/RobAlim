@@ -24,7 +24,8 @@ public class Menu extends Activity implements Observer{
 	private Activity menu_activity;
 	private RobAlimInterfaceOut robot_out;
 	private RobAlimInterfaceIn robot_in;
-	private Button test_button;
+	private Button indications_button;
+	private Button deplacement_button;
 	private ToggleButton mode_button;
 	private TextView statut_field;
 	
@@ -41,15 +42,25 @@ public class Menu extends Activity implements Observer{
         
         statut_field=(TextView)findViewById(R.id.statut);
         
-        test_button=(Button)findViewById(R.id.test_button);
-        test_button.setOnClickListener(new OnClickListener() {
+        indications_button=(Button)findViewById(R.id.indications_button);
+        deplacement_button=(Button)findViewById(R.id.deplacement_button);
+        
+        indications_button.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Log.i("click", "onClick");
-				Intent i = new Intent(menu_activity, MenuTest.class);
+				Intent i = new Intent(menu_activity, IndicationsView.class);
 		    	startActivity(i);
 				
+			}
+		});
+        
+        deplacement_button.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(menu_activity, MenuDeplacement.class);
+		    	startActivity(i);
 			}
 		});
         

@@ -57,8 +57,10 @@ private RobAlimInterfaceIn robot_in;
         	
         	@Override
         	public void onClick(View v) {
-        		robot_in.updateData(0, "ultrasons/0/205");
-        		robot_in.updateData(0, "ultrasons/1/209");
+        		robot_in.updateData(0, "ultrasons/i0/205");
+        		robot_in.updateData(0, "ultrasons/i1/209");
+        		robot_in.updateData(0, "ultrasons/m0/102");
+        		robot_in.updateData(0, "ultrasons/m1/101");
         	}
         });
         
@@ -66,9 +68,12 @@ private RobAlimInterfaceIn robot_in;
         	
         	@Override
         	public void onClick(View v) {
-        		robot_in.updateData(0, "inductifs/0/152");
-        		robot_in.updateData(0, "inductifs/1/153");
-        		robot_in.updateData(0, "inductifs/2/154");
+        		robot_in.updateData(0, "inductifs/i0/152");
+        		robot_in.updateData(0, "inductifs/i1/153");
+        		robot_in.updateData(0, "inductifs/i2/154");
+        		robot_in.updateData(0, "inductifs/m0/82");
+        		robot_in.updateData(0, "inductifs/m1/83");
+        		robot_in.updateData(0, "inductifs/m2/84");
         	}
         });
 	}

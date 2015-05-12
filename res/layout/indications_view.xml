@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/scrollView1"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content" >
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical" >
+		<TextView
+	    	android:id="@+id/label_ultrasons"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Ultrasons"
+	        android:layout_marginLeft="5dp"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+		<TableLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" >
+	
+		    <TableRow
+		        android:id="@+id/tableRow3"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" >
+	
+		        <Space
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" />
+	
+		       	<TextView
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Instantanée"
+			        android:layout_marginLeft="5dp"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+		        	
+		        <TextView
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Moyenne"
+			        android:layout_marginLeft="5dp"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+			    
+		    </TableRow>
+		    <TableRow
+		        android:id="@+id/tableRow1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" >
+		       	
+		       	<TextView
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Capteur 0"
+			        android:layout_marginLeft="5dp"
+			        android:layout_marginRight="20dp"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+		        
+		        <TextView
+			    	android:id="@+id/ultrason_instant_0"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="0"
+			        android:gravity="center_horizontal"
+			        android:textAppearance="?android:attr/textAppearanceLarge" />
+		        	
+		        <TextView
+			    	android:id="@+id/ultrason_mean_0"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="0"
+			        android:gravity="center_horizontal"
+			        android:textAppearance="?android:attr/textAppearanceLarge" />
+		        
+		    </TableRow>
+	
+		    <TableRow
+		        android:id="@+id/tableRow2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" >
+		       	<TextView
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Capteur 1"
+			        android:layout_marginLeft="5dp"
+			        android:layout_marginRight="20dp"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+		       	
+		       	
+		       	<TextView
+			    	android:id="@+id/ultrason_instant_1"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="0"
+			        android:gravity="center_horizontal"
+			        android:textAppearance="?android:attr/textAppearanceLarge" />
+		        	
+		        <TextView
+			    	android:id="@+id/ultrason_mean_1"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="0"
+			        android:gravity="center_horizontal"
+			        android:textAppearance="?android:attr/textAppearanceLarge" />
+		    </TableRow>
+		</TableLayout>
+	
+		<Space
+		    android:layout_width="match_parent"
+		    android:layout_height="30dp" />
+	
+		<TextView
+	    	android:id="@+id/label_inductifs"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Inductifs"
+	        android:layout_marginLeft="5dp"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+		
+			<TableLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" >
+	
+		    <TableRow
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" >
+	
+		        <Space
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" />
+	
+		       	<TextView
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Instantanée"
+			        android:layout_marginLeft="5dp"
+			        android:textAppearance="?android:attr/textAppearanceMedium"/>
+		        	
+		        <TextView
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Moyenne"
+			        android:layout_marginLeft="5dp"
+			    	android:textAppearance="?android:attr/textAppearanceMedium" />
+			    
+		    </TableRow>
+		    <TableRow
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" >
+		       	
+		       	<TextView
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Capteur 0"
+			        android:layout_marginLeft="5dp"
+			        android:layout_marginRight="20dp"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+		        
+		        <TextView
+			    	android:id="@+id/inductif_instant_0"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="0"
+			        android:gravity="center_horizontal"
+			        android:textAppearance="?android:attr/textAppearanceLarge" />
+		        	
+		        <TextView
+			    	android:id="@+id/inductif_mean_0"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="0"
+			        android:gravity="center_horizontal"
+			        android:textAppearance="?android:attr/textAppearanceLarge" />
+		        
+		    </TableRow>
+	
+		    <TableRow
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" >
+		       	<TextView
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Capteur 1"
+			        android:layout_marginLeft="5dp"
+			        android:layout_marginRight="20dp"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+		       	
+		       	
+		       	<TextView
+			    	android:id="@+id/inductif_instant_1"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="0"
+			        android:gravity="center_horizontal"
+			        android:textAppearance="?android:attr/textAppearanceLarge" />
+		        	
+		        <TextView
+			    	android:id="@+id/inductif_mean_1"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="0"
+			        android:gravity="center_horizontal"
+			        android:textAppearance="?android:attr/textAppearanceLarge" />
+		    </TableRow>
+		    
+		    <TableRow
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" >
+		       	<TextView
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Capteur 2"
+			        android:layout_marginLeft="5dp"
+			        android:layout_marginRight="20dp"
+			        android:textAppearance="?android:attr/textAppearanceMedium" />
+		       	
+		       	
+		       	<TextView
+			    	android:id="@+id/inductif_instant_2"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="0"
+			        android:gravity="center_horizontal"
+			        android:textAppearance="?android:attr/textAppearanceLarge" />
+		        	
+		        <TextView
+			    	android:id="@+id/inductif_mean_2"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="0"
+			        android:gravity="center_horizontal"
+			        android:textAppearance="?android:attr/textAppearanceLarge" />
+		    </TableRow>
+		</TableLayout>
+		
+		<Space
+		    android:layout_width="match_parent"
+		    android:layout_height="30dp" />
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal" >
+			
+			<TextView
+				android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Programme: "
+			    android:textAppearance="?android:attr/textAppearanceLarge" />
+			
+			<TextView
+			    android:id="@+id/program_value"
+				android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:text="Test"
+			    android:textAppearance="?android:attr/textAppearanceLarge" />    
+		    
+		</LinearLayout>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal" >
+		    
+		    <Spinner
+		        android:id="@+id/select_program"
+		        android:layout_width="200dp"
+		        android:layout_height="wrap_content" />	
+		    
+		    <Space
+			    android:layout_width="20dp"
+			    android:layout_height="1dp" />
+		        	
+		    <Button
+		        android:id="@+id/send_action_button"
+		        android:layout_width="wrap_content"
+		        android:layout_height="match_parent"
+		        android:layout_gravity="right"
+		        android:text="Changer" />
+		</LinearLayout>
+	</LinearLayout>
+</ScrollView>

@@ -43,10 +43,16 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 	 
 	<Button
-        android:id="@+id/test_button"
+        android:id="@+id/indications_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Menu Test" />
+        android:text="Indications" />
+	
+	<Button
+        android:id="@+id/deplacement_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Déplacement" />
 	
 	<Button
         android:id="@+id/button_tests"

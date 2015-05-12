@@ -27,6 +27,7 @@
         <activity  android:name="com.arduino.robalim.view.MenuTest"></activity>
         <activity  android:name="com.arduino.robalim.view.MenuDeplacement"></activity>
         <activity  android:name="com.arduino.robalim.view.MenuActions"></activity>
+        <activity  android:name="com.arduino.robalim.view.IndicationsView"></activity>
         <activity  android:name="com.arduino.robalim.view.MenuCaptions"></activity>
         <activity  android:name="com.arduino.robalim.view.Tests"></activity>
         
