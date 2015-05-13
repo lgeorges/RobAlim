@@ -49,12 +49,12 @@
 		        android:layout_height="wrap_content" >
 		       	
 		       	<TextView
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:text="Capteur 0"
-			        android:layout_marginLeft="5dp"
-			        android:layout_marginRight="20dp"
-			        android:textAppearance="?android:attr/textAppearanceMedium" />
+		       	    android:layout_width="match_parent"
+		       	    android:layout_height="wrap_content"
+		       	    android:layout_marginLeft="5dp"
+		       	    android:layout_marginRight="20dp"
+		       	    android:text="Capteur Gauche"
+		       	    android:textAppearance="?android:attr/textAppearanceMedium" />
 		        
 		        <TextView
 			    	android:id="@+id/ultrason_instant_0"
@@ -78,14 +78,14 @@
 		        android:id="@+id/tableRow2"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content" >
+
 		       	<TextView
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:text="Capteur 1"
-			        android:layout_marginLeft="5dp"
-			        android:layout_marginRight="20dp"
-			        android:textAppearance="?android:attr/textAppearanceMedium" />
-		       	
+		       	    android:layout_width="match_parent"
+		       	    android:layout_height="wrap_content"
+		       	    android:layout_marginLeft="5dp"
+		       	    android:layout_marginRight="20dp"
+		       	    android:text="Capteur Droite"
+		       	    android:textAppearance="?android:attr/textAppearanceMedium" />
 		       	
 		       	<TextView
 			    	android:id="@+id/ultrason_instant_1"
@@ -149,12 +149,12 @@
 		        android:layout_height="wrap_content" >
 		       	
 		       	<TextView
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:text="Capteur 0"
-			        android:layout_marginLeft="5dp"
-			        android:layout_marginRight="20dp"
-			        android:textAppearance="?android:attr/textAppearanceMedium" />
+		       	    android:layout_width="match_parent"
+		       	    android:layout_height="wrap_content"
+		       	    android:layout_marginLeft="5dp"
+		       	    android:layout_marginRight="20dp"
+		       	    android:text="Capteur Gauche"
+		       	    android:textAppearance="?android:attr/textAppearanceMedium" />
 		        
 		        <TextView
 			    	android:id="@+id/inductif_instant_0"
@@ -177,14 +177,14 @@
 		    <TableRow
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content" >
+
 		       	<TextView
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:text="Capteur 1"
-			        android:layout_marginLeft="5dp"
-			        android:layout_marginRight="20dp"
-			        android:textAppearance="?android:attr/textAppearanceMedium" />
-		       	
+		       	    android:layout_width="match_parent"
+		       	    android:layout_height="wrap_content"
+		       	    android:layout_marginLeft="5dp"
+		       	    android:layout_marginRight="20dp"
+		       	    android:text="Capteur Milieu"
+		       	    android:textAppearance="?android:attr/textAppearanceMedium" />
 		       	
 		       	<TextView
 			    	android:id="@+id/inductif_instant_1"
@@ -206,14 +206,14 @@
 		    <TableRow
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content" >
+
 		       	<TextView
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:text="Capteur 2"
-			        android:layout_marginLeft="5dp"
-			        android:layout_marginRight="20dp"
-			        android:textAppearance="?android:attr/textAppearanceMedium" />
-		       	
+		       	    android:layout_width="match_parent"
+		       	    android:layout_height="wrap_content"
+		       	    android:layout_marginLeft="5dp"
+		       	    android:layout_marginRight="20dp"
+		       	    android:text="Capteur Droite"
+		       	    android:textAppearance="?android:attr/textAppearanceMedium" />
 		       	
 		       	<TextView
 			    	android:id="@+id/inductif_instant_2"

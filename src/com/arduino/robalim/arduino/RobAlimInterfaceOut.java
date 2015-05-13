@@ -60,6 +60,7 @@ public class RobAlimInterfaceOut {
 	
 	public void envoyerAction(Context context,String action){
 		Log.i("MSG OUT", "Envoyer action: "+action);
+		Amarino.sendDataToArduino(context, UserInputGraph.DEVICE_ADDRESS, 'C', action);
 		RobAlimInterfaceIn robot_in = RobAlimInterfaceIn.getInstance();
 		robot_in.updateData(0, "action/"+action);
 	}
