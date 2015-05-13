@@ -28,16 +28,14 @@ public class IndicationsView extends Activity implements Observer {
 	private Button send_action_button;
 	private Spinner spinner;
 	private TextView program_value;
+	private TextView variateur_value;
 	private TextView ultrason_instant_0;
 	private TextView ultrason_mean_0;
 	private TextView ultrason_instant_1;
 	private TextView ultrason_mean_1;
 	private TextView inductif_instant_0;
-	private TextView inductif_mean_0;
 	private TextView inductif_instant_1;
-	private TextView inductif_mean_1;
 	private TextView inductif_instant_2;
-	private TextView inductif_mean_2;
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +52,6 @@ public class IndicationsView extends Activity implements Observer {
         inductif_instant_2=(TextView)findViewById(R.id.inductif_instant_2);
         ultrason_mean_0=(TextView)findViewById(R.id.ultrason_mean_0);
         ultrason_mean_1=(TextView)findViewById(R.id.ultrason_mean_1);
-        inductif_mean_0=(TextView)findViewById(R.id.inductif_mean_0);
-        inductif_mean_1=(TextView)findViewById(R.id.inductif_mean_1);
-        inductif_mean_2=(TextView)findViewById(R.id.inductif_mean_2);
         
         spinner = (Spinner) findViewById(R.id.select_program);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.actions_array, android.R.layout.simple_spinner_item);
@@ -64,6 +59,7 @@ public class IndicationsView extends Activity implements Observer {
         spinner.setAdapter(adapter);
         
         program_value = (TextView)findViewById(R.id.program_value);
+        variateur_value= (TextView)findViewById(R.id.variateur_value);
         
         send_action_button = (Button) findViewById(R.id.send_action_button);
         send_action_button.setOnClickListener(new OnClickListener() {
@@ -93,12 +89,14 @@ public class IndicationsView extends Activity implements Observer {
 	@Override
 	public void update(Observable observable, Object data) {
 		String action = robot_in.getAction();
+		String variateur=robot_in.getVariateur();
+		
 		program_value.setText(action);
+		variateur_value.setText(variateur);
 		
 		int [] ultrasons = robot_in.getUltrasonValues();
 		int [] inductifs = robot_in.getInductifValues();
 		int [] ultrasons_mean = robot_in.getUltrasonMeans();
-		int [] inductifs_mean = robot_in.getInductifMeans();
 //		Log.i("RobotALimIn"," "+inductifs_mean[0]+" "+inductifs_mean[1]+" "+inductifs_mean[2]);
 //		Log.i("RobotALimIn"," "+ultrasons_mean[0]+" "+ultrasons_mean[1]);
 
@@ -112,8 +110,5 @@ public class IndicationsView extends Activity implements Observer {
 		ultrason_mean_0.setText(""+ultrasons_mean[0]);
 		ultrason_mean_1.setText(""+ultrasons_mean[1]);
 		
-		inductif_mean_0.setText(""+inductifs_mean[0]);
-		inductif_mean_1.setText(""+inductifs_mean[1]);
-		inductif_mean_2.setText(""+inductifs_mean[2]);
 	}
 }
