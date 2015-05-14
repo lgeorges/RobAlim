@@ -38,8 +38,8 @@ public class RobAlimInterfaceOut {
 		Amarino.sendDataToArduino(context, UserInputGraph.DEVICE_ADDRESS, 'A', 4);
 	}
 
-	public void tournerAGaucheRapidement(Context context){
-		Log.i("MSG OUT", "Tourner a gauche rapidement");
+	public void avancerGauche(Context context){
+		Log.i("MSG OUT", "Avancer à gauche");
 		Amarino.sendDataToArduino(context, UserInputGraph.DEVICE_ADDRESS, 'A', 1);
 	}
 	
@@ -48,8 +48,8 @@ public class RobAlimInterfaceOut {
 		Amarino.sendDataToArduino(context, UserInputGraph.DEVICE_ADDRESS, 'A', 6);
 	}
 	
-	public void tournerADroiteRapidement(Context context){
-		Log.i("MSG OUT", "Tourner a droite rapidement");
+	public void avancerDroite(Context context){
+		Log.i("MSG OUT", "Avancer à droite");
 		Amarino.sendDataToArduino(context, UserInputGraph.DEVICE_ADDRESS, 'A', 3);
 	}
 	

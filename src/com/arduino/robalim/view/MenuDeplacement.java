@@ -39,14 +39,14 @@ public class MenuDeplacement extends Activity {
         button_up_left.setOnClickListener(new OnClickListener() {
         	@Override
         	public void onClick(View v) {
-        		robot_out.tournerAGaucheRapidement(activity);
+        		robot_out.avancerGauche(activity);
         	}
         });
         
         button_up_right.setOnClickListener(new OnClickListener() {
         	@Override
         	public void onClick(View v) {
-        		robot_out.tournerADroiteRapidement(activity);
+        		robot_out.avancerDroite(activity);
         	}
         });
         

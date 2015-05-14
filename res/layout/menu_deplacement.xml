@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/horizontalScrollView1"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent" >
 	<LinearLayout 
 	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
+	    android:layout_height="wrap_content"
 	    android:orientation="vertical" >
 	
 	    <TableLayout
@@ -21,49 +20,63 @@
 	            
 	            <ImageButton
 			        android:id="@+id/button_up_left"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
+			        android:layout_width="@dimen/move_button_size"
+			        android:layout_height="@dimen/move_button_size"
+			        android:padding="10dp"
+        			android:scaleType="fitCenter"
 			        android:src="@drawable/up_left"/>
 	
 	            <ImageButton
 			        android:id="@+id/button_up_fast"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
+			        android:layout_width="@dimen/move_button_size"
+			        android:layout_height="@dimen/move_button_size"
+			        android:padding="10dp"
+        			android:scaleType="fitCenter"
 			        android:src="@drawable/up_fast"/>
 	            <ImageButton
 			        android:id="@+id/button_up_right"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
+			        android:layout_width="@dimen/move_button_size"
+			        android:layout_height="@dimen/move_button_size"
+			        android:padding="10dp"
+        			android:scaleType="fitCenter"
 			        android:src="@drawable/up_right"/>
 	            
 	        </TableRow>
 	
-	        <TableRow
+	 	    <TableRow
 	            android:id="@+id/tableRow2"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content" >
 	            
 	            <ImageButton
 			        android:id="@+id/button_left"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
+			        android:layout_width="@dimen/move_button_size"
+			        android:layout_height="@dimen/move_button_size"
+			        android:padding="10dp"
+        			android:scaleType="fitCenter"			        
 			        android:src="@drawable/left"/>
 	            <ImageButton
 			        android:id="@+id/button_up"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
+			        android:layout_width="@dimen/move_button_size"
+			        android:layout_height="@dimen/move_button_size"
+			        android:padding="10dp"
+        			android:scaleType="fitCenter"
 			        android:src="@drawable/up"/>
 	            <ImageButton
 			        android:id="@+id/button_right"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
+			        android:layout_width="@dimen/move_button_size"
+			        android:layout_height="@dimen/move_button_size"
+			        android:padding="10dp"
+        			android:scaleType="fitCenter"
 			        android:src="@drawable/right"/>
 	        </TableRow>
 	    </TableLayout>
 	    <ImageButton
 			android:id="@+id/button_stop"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_height="@dimen/move_button_size"
+			android:padding="10dp"
+			android:scaleType="fitCenter"
 			android:src="@drawable/stop"/>
 	</LinearLayout>
-</HorizontalScrollView>
+</ScrollView>
