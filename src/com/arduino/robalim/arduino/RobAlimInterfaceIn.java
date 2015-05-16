@@ -20,7 +20,6 @@ public class RobAlimInterfaceIn extends Observable {
 	
 	public RobAlimInterfaceIn(){
 		mode="manuel";
-//		registerReceiver(arduino_receiver, new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
 	}
 	
 	public ArduinoReceiver getArduinoReceiver() {
