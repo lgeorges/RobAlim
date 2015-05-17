@@ -1,33 +1,30 @@
 package com.arduino.robalim.view;
 
 import com.arduino.robalim.arduino.RobAlimInterfaceIn;
-import com.arduino.robalim.arduino.RobAlimInterfaceOut;
 import com.example.robalim.R;
 
-import android.app.Activity;
-import android.content.IntentFilter;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Switch;
-import at.abraxas.amarino.AmarinoIntent;
 
-public class Tests extends Activity {
-private RobAlimInterfaceIn robot_in;
+public class TestsFragmentView extends Fragment {
+	private RobAlimInterfaceIn robot_in;
 	
-	public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.view_test, container, false);
         robot_in=RobAlimInterfaceIn.getInstance();
         
-        setContentView(R.layout.view_test);
-        
-        Button button1 = (Button)findViewById(R.id.button1);
-        Button button2 = (Button)findViewById(R.id.button2);
-        Button button3 = (Button)findViewById(R.id.button3);
-        Button button4 = (Button)findViewById(R.id.button4);
-        Button button5 = (Button)findViewById(R.id.button5);
-        Button button6 = (Button)findViewById(R.id.button6);
+        Button button1 = (Button)rootView.findViewById(R.id.test_check);
+        Button button2 = (Button)rootView.findViewById(R.id.button2);
+        Button button3 = (Button)rootView.findViewById(R.id.button3);
+        Button button4 = (Button)rootView.findViewById(R.id.button4);
+        Button button5 = (Button)rootView.findViewById(R.id.button5);
+        Button button6 = (Button)rootView.findViewById(R.id.button6);
 //        Button button_stop = (Button)findViewById(R.id.button_stop);
         
         button1.setOnClickListener(new OnClickListener() {
@@ -82,18 +79,9 @@ private RobAlimInterfaceIn robot_in;
         		robot_in.updateData(0, "variateur/etat 1");
         	}
         });
-	}
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-		registerReceiver(robot_in.getArduinoReceiver(), new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
-	};
+        
+        return rootView;
+    }
 	
-	@Override 
-	protected void onStop() {
-		super.onStop();
-		unregisterReceiver(robot_in.getArduinoReceiver());
-	};
 	
 }

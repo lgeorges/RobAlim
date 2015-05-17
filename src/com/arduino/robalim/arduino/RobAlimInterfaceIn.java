@@ -9,7 +9,7 @@ import at.abraxas.amarino.AmarinoIntent;
 public class RobAlimInterfaceIn extends Observable {
 	
 	private static RobAlimInterfaceIn instance = new RobAlimInterfaceIn();
-	private String mode;
+	private boolean mode_manuel;
 	private String statut;
 	private String action;
 	private String variateur;
@@ -19,7 +19,10 @@ public class RobAlimInterfaceIn extends Observable {
 	private ArduinoReceiver arduino_receiver;
 	
 	public RobAlimInterfaceIn(){
-		mode="manuel";
+		mode_manuel=false;
+		statut="No Statut";
+		action="No action";
+		variateur="No variateur";
 	}
 	
 	public ArduinoReceiver getArduinoReceiver() {
@@ -29,8 +32,8 @@ public class RobAlimInterfaceIn extends Observable {
 	public static RobAlimInterfaceIn getInstance(){
 		return instance;
 	}
-	public String getMode() {
-		return mode;
+	public boolean isInManualMode() {
+		return mode_manuel;
 	}
 	public String getStatut() {
 		return statut;
@@ -62,9 +65,12 @@ public class RobAlimInterfaceIn extends Observable {
 		
 		Log.i("RobAlimIn","id: "+parts[0]+" data "+parts[1]);
 		
-		if(identifiant.equalsIgnoreCase("mode"))
-			mode = parts[1];
-		
+		if(identifiant.equalsIgnoreCase("mode")){
+			if(parts[1].equals("auto"))
+				mode_manuel = false;
+			else
+				mode_manuel = true;
+		}		
 		else if(identifiant.equalsIgnoreCase("action"))
 			action = parts[1];
 		
