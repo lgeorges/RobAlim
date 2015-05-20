@@ -154,12 +154,14 @@ public class MainMenu extends Activity {
     @Override
     protected void onStart() {
     	super.onStart();
+    	Log.i("MainMenu","OnStart "+robot_in.getArduinoReceiver());
     	registerReceiver(robot_in.getArduinoReceiver(), new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
     };
     
     @Override
     protected void onStop() {
     	super.onStop();
+    	Log.i("MainMenu","OnStop "+robot_in.getArduinoReceiver());
     	unregisterReceiver(robot_in.getArduinoReceiver());
     };
     @Override

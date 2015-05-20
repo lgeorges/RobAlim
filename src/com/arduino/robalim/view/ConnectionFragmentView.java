@@ -55,7 +55,7 @@ public class ConnectionFragmentView extends Fragment {
 //							.commit();
 				Amarino.connect(main_activity, device_address);
 				robot_out.setDeviceAddress(device_address);
-				robot_in.setArduinoReceiver(new ArduinoReceiver());
+//				robot_in.setArduinoReceiver(new ArduinoReceiver());
 				
 				((MainMenu)main_activity).updateConnection(true);
 //				Intent i = new Intent(this, MainActivity.class);
