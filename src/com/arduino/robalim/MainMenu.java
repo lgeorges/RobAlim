@@ -42,6 +42,7 @@ public class MainMenu extends Activity {
     private CharSequence mTitle;
     private String[] menu_items;
     private Fragment[] fragments;
+    private Menu menu_bar;
     private int current_menu = -1;
 
     @Override
@@ -93,13 +94,14 @@ public class MainMenu extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
+        menu_bar=menu;
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
+//        menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -164,5 +166,9 @@ public class MainMenu extends Activity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+    
+    public void updateConnection(boolean connected){
+    	menu_bar.findItem(R.id.connection_led).setIcon(R.drawable.connection_on);
     }
 }

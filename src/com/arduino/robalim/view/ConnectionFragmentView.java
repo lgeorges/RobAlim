@@ -2,6 +2,7 @@ package com.arduino.robalim.view;
 
 import java.util.Locale;
 
+import com.arduino.robalim.MainMenu;
 import com.arduino.robalim.arduino.ArduinoReceiver;
 import com.arduino.robalim.arduino.RobAlimInterfaceIn;
 import com.arduino.robalim.arduino.RobAlimInterfaceOut;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -36,6 +38,7 @@ public class ConnectionFragmentView extends Fragment {
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.input, container, false);
         robot_in=RobAlimInterfaceIn.getInstance();
+        robot_out=RobAlimInterfaceOut.getInstance();
 
         idField = (EditText)rootView.findViewById(R.id.deviceIDField);
         button = (Button)rootView.findViewById(R.id.okButton);
@@ -53,6 +56,8 @@ public class ConnectionFragmentView extends Fragment {
 				Amarino.connect(main_activity, device_address);
 				robot_out.setDeviceAddress(device_address);
 				robot_in.setArduinoReceiver(new ArduinoReceiver());
+				
+				((MainMenu)main_activity).updateConnection(true);
 //				Intent i = new Intent(this, MainActivity.class);
 //				Intent i = new Intent(this, Menu.class);
 //		    	startActivity(i);
