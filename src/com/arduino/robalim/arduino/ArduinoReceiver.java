@@ -21,7 +21,6 @@ public class ArduinoReceiver extends BroadcastReceiver{
 		Log.i("ArduinoReceiver","onReceive");
 		// TODO Auto-generated method stub
 		String data = null;
-		
 		// the device address from which the data was sent, we don't need it here but to demonstrate how you retrieve it
 		final String address = intent.getStringExtra(AmarinoIntent.EXTRA_DEVICE_ADDRESS);
 		

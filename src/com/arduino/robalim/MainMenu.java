@@ -2,6 +2,7 @@ package com.arduino.robalim;
 
 
 import com.arduino.robalim.arduino.ArduinoReceiver;
+import com.arduino.robalim.arduino.ConnectionManager;
 import com.arduino.robalim.arduino.RobAlimInterfaceIn;
 import com.arduino.robalim.view.ConnectionFragmentView;
 import com.arduino.robalim.view.IndicationsFragmentView;
@@ -36,7 +37,7 @@ public class MainMenu extends Activity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-    private RobAlimInterfaceIn robot_in;
+    private ConnectionManager connection_manager;
 
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
@@ -65,18 +66,16 @@ public class MainMenu extends Activity {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close){
             public void onDrawerClosed(View view) {
                 getActionBar().setTitle(mTitle);
-                invalidateOptionsMenu();
+//                invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
                 getActionBar().setTitle(mDrawerTitle);
-                invalidateOptionsMenu();
+//                invalidateOptionsMenu();
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        robot_in=RobAlimInterfaceIn.getInstance();
-        robot_in.setArduinoReceiver(new ArduinoReceiver());
+        connection_manager=ConnectionManager.getInstance();
         
         fragments = new Fragment[5];
         fragments[0]= new ConnectionFragmentView();
@@ -154,15 +153,14 @@ public class MainMenu extends Activity {
     @Override
     protected void onStart() {
     	super.onStart();
-    	Log.i("MainMenu","OnStart "+robot_in.getArduinoReceiver());
-    	registerReceiver(robot_in.getArduinoReceiver(), new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
+//    	connection_manager.registerReceiver(this);
     };
     
     @Override
     protected void onStop() {
     	super.onStop();
-    	Log.i("MainMenu","OnStop "+robot_in.getArduinoReceiver());
-    	unregisterReceiver(robot_in.getArduinoReceiver());
+    	connection_manager.disconnectDevices(this);
+//    	connection_manager.unregistererReceiver(this);
     };
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
