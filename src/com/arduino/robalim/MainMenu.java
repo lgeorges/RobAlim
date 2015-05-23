@@ -7,7 +7,7 @@ import com.arduino.robalim.arduino.RobAlimInterfaceIn;
 import com.arduino.robalim.view.ConnectionFragmentView;
 import com.arduino.robalim.view.IndicationsFragmentView;
 import com.arduino.robalim.view.MoveFragmentView;
-import com.arduino.robalim.view.StatutFragmentView;
+import com.arduino.robalim.view.ReglagesFragmentView;
 import com.arduino.robalim.view.TestsFragmentView;
 import com.example.robalim.R;
 
@@ -79,7 +79,7 @@ public class MainMenu extends Activity {
         
         fragments = new Fragment[5];
         fragments[0]= new ConnectionFragmentView();
-        fragments[1]= new StatutFragmentView();
+        fragments[1]= new ReglagesFragmentView();
         fragments[2]= new MoveFragmentView();
         fragments[3]= new IndicationsFragmentView();
         fragments[4]= new TestsFragmentView();

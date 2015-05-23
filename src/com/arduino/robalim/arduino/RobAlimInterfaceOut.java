@@ -69,4 +69,14 @@ public class RobAlimInterfaceOut {
 		RobAlimInterfaceIn robot_in = RobAlimInterfaceIn.getInstance();
 		robot_in.updateData(0, "action/"+action);
 	}
+	
+	public void reglageVitesseDistribution(Context context, int progress_value){
+		Log.i("MSG OUT", "Reglage vitesse distribution: "+progress_value);
+	}
+	
+	public void reglageBordure(Context context, int progress_value){
+		Log.i("MSG OUT", "Reglage bordure: "+progress_value);
+	}
+	
+	
 }

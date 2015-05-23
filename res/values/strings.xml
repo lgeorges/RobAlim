@@ -9,7 +9,7 @@
       <string name="pwm_value:">PWM Value:</string>
 	    <string-array name="menu_array">
 	        <item>Connection</item>
-	        <item>Statut</item>
+	        <item>Reglages</item>
 	        <item>Déplacement</item>
 	        <item>Indications</item>
 	        <item>Tests</item>

@@ -27,6 +27,7 @@ public class IndicationsFragmentView extends Fragment implements Observer{
 	private Button send_action_button;
 	private Spinner spinner;
 	private TextView program_value;
+	private TextView statut_value;
 	private TextView variateur_value;
 	private TextView ultrason_instant_0;
 	private TextView ultrason_mean_0;
@@ -67,6 +68,7 @@ public class IndicationsFragmentView extends Fragment implements Observer{
         
         program_value = (TextView)rootView.findViewById(R.id.program_value);
         variateur_value= (TextView)rootView.findViewById(R.id.variateur_value);
+        statut_value= (TextView)rootView.findViewById(R.id.statut_value);
         
         send_action_button = (Button)rootView.findViewById(R.id.send_action_button);
         send_action_button.setOnClickListener(new OnClickListener() {
@@ -88,9 +90,11 @@ public class IndicationsFragmentView extends Fragment implements Observer{
 		
 			String action = robot_in.getAction();
 			String variateur=robot_in.getVariateur();
+			String statut=robot_in.getStatut();
 			
 			program_value.setText(action);
 			variateur_value.setText(variateur);
+			statut_value.setText(statut);
 			
 			int [] ultrasons = robot_in.getUltrasonValues();
 			int [] inductifs = robot_in.getInductifValues();
