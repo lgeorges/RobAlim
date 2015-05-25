@@ -1,0 +1,6 @@
+<resources>
+    <integer name="min_seekbar_distrib">0</integer>
+    <integer name="max_seekbar_distrib">100</integer>
+    <integer name="min_seekbar_border">50</integer>
+    <integer name="max_seekbar_border">150</integer>
+</resources>

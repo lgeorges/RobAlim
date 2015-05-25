@@ -28,6 +28,8 @@ public class ReglagesFragmentView extends Fragment implements Observer {
 	private Button mode_button;
 	private SeekBar seekbar_distribution;
 	private SeekBar seekbar_border;
+	private TextView border_value;
+	private TextView distrib_value;
 	private boolean view_created =false;
 	
 	public ReglagesFragmentView(){
@@ -46,6 +48,9 @@ public class ReglagesFragmentView extends Fragment implements Observer {
         seekbar_border=(SeekBar)rootView.findViewById(R.id.seekbar_border);
         seekbar_distribution=(SeekBar)rootView.findViewById(R.id.seekbar_distribution);
         
+        border_value=(TextView)rootView.findViewById(R.id.border_value);
+        distrib_value=(TextView)rootView.findViewById(R.id.distrib_value);
+        
         mode_button=(Button)rootView.findViewById(R.id.mode_button);
         mode_button.setOnClickListener(new OnClickListener() {
 			
@@ -60,9 +65,19 @@ public class ReglagesFragmentView extends Fragment implements Observer {
         
         seekbar_border.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
         	
+        	private int adaptProgressValue(int progress){
+				int max = getResources().getInteger(R.integer.max_seekbar_border);
+				int min = getResources().getInteger(R.integer.min_seekbar_border);
+				int value = progress*(max-min)/100 + min;
+				
+				return value;
+        	}
+        	
         	@Override
         	public void onStopTrackingTouch(SeekBar seekBar) {
-        		robot_out.reglageBordure(main_activity, seekBar.getProgress());
+        		int value = adaptProgressValue(seekBar.getProgress());
+        		Log.d("Reglages","value: " +value);
+        		robot_out.reglageBordure(main_activity, value);
         	}
         	@Override
         	public void onStartTrackingTouch(SeekBar seekBar) {
@@ -70,14 +85,25 @@ public class ReglagesFragmentView extends Fragment implements Observer {
         	@Override
         	public void onProgressChanged(SeekBar seekBar, int progress,
         			boolean fromUser) {
+        		border_value.setText(""+adaptProgressValue(progress));
         	}
         });
         
         seekbar_distribution.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			
+        	private int adaptProgressValue(int progress){
+				int max = getResources().getInteger(R.integer.max_seekbar_distrib);
+				int min = getResources().getInteger(R.integer.min_seekbar_distrib);
+				int value = progress*(max-min)/100 + min;
+				
+				return value;
+        	}
+        	
 			@Override
-			public void onStopTrackingTouch(SeekBar seekBar) {
-				robot_out.reglageVitesseDistribution(main_activity, seekBar.getProgress());
+			public void onStopTrackingTouch(SeekBar seekBar) {        		
+				int value = adaptProgressValue(seekBar.getProgress());
+				Log.d("Reglages","value: " +value);
+				robot_out.reglageVitesseDistribution(main_activity, value);
 			}
 			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
@@ -85,6 +111,7 @@ public class ReglagesFragmentView extends Fragment implements Observer {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
+				distrib_value.setText(""+adaptProgressValue(progress));
 			}
 		});
         
@@ -97,6 +124,8 @@ public class ReglagesFragmentView extends Fragment implements Observer {
 	public void update(Observable observable, Object data) {
 		if(view_created){
 			boolean mode_manuel = robot_in.isInManualMode();
+			int border = robot_in.getBorderValue();
+			int distrib = robot_in.getDistributionValue();
 			String statut = robot_in.getStatut();
 
 			if(mode_manuel)
@@ -106,6 +135,8 @@ public class ReglagesFragmentView extends Fragment implements Observer {
 				mode_button.setText("Automatique");
 //				mode_button.setChecked(false);
 			
+			border_value.setText(""+border);
+			distrib_value.setText(""+distrib);
 		}
 	}
 }

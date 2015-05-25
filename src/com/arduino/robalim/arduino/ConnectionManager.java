@@ -29,10 +29,6 @@ public class ConnectionManager {
 		return device_address;
 	}
 	
-	public void setAddress(String value){
-		device_address=value;
-	}
-	
 	public void connectDevice(Activity activity, String address) {
 //		Log.d("ConnectionManager","connect");
 		device_address=address;

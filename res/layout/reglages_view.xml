@@ -31,11 +31,30 @@
 		android:layout_width="1dp"
 		android:layout_height="30dp"/>
     
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout 
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vitesse de distribution"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:orientation="horizontal">
+      
+        <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Vitesse de distribution:"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />   
+        
+        <Space
+			android:layout_width="10dp"
+			android:layout_height="1dp"/>  
+		 
+       <TextView
+           	android:id="@+id/distrib_value"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="0"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />     
+        
+    </LinearLayout>
+
 
     <SeekBar
         android:id="@+id/seekbar_distribution"
@@ -46,11 +65,28 @@
 		android:layout_width="1dp"
 		android:layout_height="30dp"/>
     
-    <TextView
-        android:layout_width="wrap_content"
+<LinearLayout 
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Distance robot/cornadis"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:orientation="horizontal">
+      
+        <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Distance Robot/Cornadis:"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />   
+        
+        <Space
+			android:layout_width="10dp"
+			android:layout_height="1dp"/>  
+		 
+       <TextView
+           	android:id="@+id/border_value"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="0"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
 
     <SeekBar
         android:id="@+id/seekbar_border"
