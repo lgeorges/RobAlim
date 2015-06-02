@@ -16,6 +16,7 @@ public class RobAlimInterfaceIn extends Observable {
 	private int[] inductif_values = {0,0,0};
 	private int[] ultrason_values = {0,0};
 	private int[] ultrason_means = {0,0};
+	private String alimentation_value = "No value defined";
 	private int border_value = 0;
 	private int distribution_value = 0;
 	
@@ -51,6 +52,9 @@ public class RobAlimInterfaceIn extends Observable {
 		return ultrason_means;
 	}
 	
+	public String getAlimentationValue(){
+		return alimentation_value;
+	}
 	public int getDistributionValue(){
 		return distribution_value;
 	}
@@ -73,6 +77,9 @@ public class RobAlimInterfaceIn extends Observable {
 		}		
 		else if(identifiant.equalsIgnoreCase("action"))
 			action = parts[1];
+
+		else if(identifiant.equalsIgnoreCase("alimentation"))
+			alimentation_value = parts[1];
 		
 		else if(identifiant.equalsIgnoreCase("statut"))
 			statut = parts[1];

@@ -70,6 +70,13 @@ public class RobAlimInterfaceOut {
 		robot_in.updateData(0, "action/"+action);
 	}
 	
+	public void envoyerAlimentationValue(Context context,String alimentation){
+		Log.i("MSG OUT", "Envoyer Alimentation Value: "+alimentation);
+//		Amarino.sendDataToArduino(context, ConnectionManager.getInstance().getAddress(), 'C', action);
+		RobAlimInterfaceIn robot_in = RobAlimInterfaceIn.getInstance();
+		robot_in.updateData(0, "alimentation/"+alimentation);
+	}
+	
 	public void reglageVitesseDistribution(Context context, int progress_value){
 		Log.i("MSG OUT", "Reglage vitesse distribution: "+progress_value);
 		RobAlimInterfaceIn robot_in = RobAlimInterfaceIn.getInstance();
