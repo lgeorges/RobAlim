@@ -11,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
@@ -24,12 +26,15 @@ import com.example.robalim.R;
 public class ReglagesFragmentView extends Fragment implements Observer {
 	private RobAlimInterfaceIn robot_in;
 	private RobAlimInterfaceOut robot_out; 
+	private Spinner spinner;
 	private Activity main_activity;
 	private Button mode_button;
+	private Button send_alimentation_button;
 	private SeekBar seekbar_distribution;
 	private SeekBar seekbar_border;
 	private TextView border_value;
 	private TextView distrib_value;
+	private TextView alimentation_value;
 	private boolean view_created =false;
 	
 	public ReglagesFragmentView(){
@@ -50,6 +55,12 @@ public class ReglagesFragmentView extends Fragment implements Observer {
         
         border_value=(TextView)rootView.findViewById(R.id.border_value);
         distrib_value=(TextView)rootView.findViewById(R.id.distrib_value);
+        alimentation_value=(TextView)rootView.findViewById(R.id.alimentation_value);
+        
+        spinner = (Spinner)rootView.findViewById(R.id.select_alimentation);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(main_activity,R.array.alimentations_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
         
         mode_button=(Button)rootView.findViewById(R.id.mode_button);
         mode_button.setOnClickListener(new OnClickListener() {
@@ -60,6 +71,17 @@ public class ReglagesFragmentView extends Fragment implements Observer {
 					robot_out.setModeAuto(main_activity);
 				else	
 					robot_out.setModeManuel(main_activity);
+			}
+		});
+        
+        send_alimentation_button=(Button)rootView.findViewById(R.id.send_alimentation_button);
+        send_alimentation_button.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String alimentation=spinner.getSelectedItem().toString();
+				robot_out.envoyerAlimentationValue(main_activity, alimentation);
+				Log.i("ReglagesView","alimentation "+alimentation);
 			}
 		});
         
@@ -126,6 +148,7 @@ public class ReglagesFragmentView extends Fragment implements Observer {
 			boolean mode_manuel = robot_in.isInManualMode();
 			int border = robot_in.getBorderValue();
 			int distrib = robot_in.getDistributionValue();
+			String alimentation = robot_in.getAlimentationValue();
 			String statut = robot_in.getStatut();
 
 			if(mode_manuel)
@@ -137,6 +160,27 @@ public class ReglagesFragmentView extends Fragment implements Observer {
 			
 			border_value.setText(""+border);
 			distrib_value.setText(""+distrib);
+			alimentation_value.setText(alimentation);
+
+			seekbar_border.setProgress(adaptValueProgressBorder(border));
+			seekbar_distribution.setProgress(adaptValueProgressDistrib(distrib));
+
 		}
+	}
+	
+	private int adaptValueProgressDistrib(int value){
+		int max = getResources().getInteger(R.integer.max_seekbar_distrib);
+		int min = getResources().getInteger(R.integer.min_seekbar_distrib);
+		int progress= (value-min)*100/(max-min);
+		
+		return progress;
+	}
+	
+	private int adaptValueProgressBorder(int value){
+		int max = getResources().getInteger(R.integer.max_seekbar_border);
+		int min = getResources().getInteger(R.integer.min_seekbar_border);
+		int progress= (value-min)*100/(max-min);
+		
+		return progress;
 	}
 }

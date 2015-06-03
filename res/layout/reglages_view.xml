@@ -92,5 +92,49 @@
         android:id="@+id/seekbar_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
+	
+	<Space
+		android:layout_width="10dp"
+		android:layout_height="1dp"/>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal" >
+			
+		<TextView
+			android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Alimentation: "
+		    android:textAppearance="?android:attr/textAppearanceLarge" />
+			
+		<TextView
+		    android:id="@+id/alimentation_value"
+			android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:text="Test"
+		    android:textAppearance="?android:attr/textAppearanceLarge" />    
+		    
+	</LinearLayout>
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal" >
+		    
+		    <Spinner
+		        android:id="@+id/select_alimentation"
+		        android:layout_width="200dp"
+		        android:layout_height="wrap_content" />	
+		    
+		    <Space
+			    android:layout_width="20dp"
+			    android:layout_height="1dp" />
+		        	
+		    <Button
+		        android:id="@+id/send_alimentation_button"
+		        android:layout_width="wrap_content"
+		        android:layout_height="match_parent"
+		        android:layout_gravity="right"
+		        android:text="Changer" />
+		</LinearLayout>
+	
 </LinearLayout>
