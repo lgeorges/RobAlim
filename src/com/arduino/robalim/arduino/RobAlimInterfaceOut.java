@@ -72,12 +72,14 @@ public class RobAlimInterfaceOut {
 	
 	public void reglageVitesseDistribution(Context context, int progress_value){
 		Log.i("MSG OUT", "Reglage vitesse distribution: "+progress_value);
+		Amarino.sendDataToArduino(context, ConnectionManager.getInstance().getAddress(), 'B', progress_value);
 		RobAlimInterfaceIn robot_in = RobAlimInterfaceIn.getInstance();
 		robot_in.updateData(0, "vitessealiment/"+progress_value);
 	}
 	
 	public void reglageBordure(Context context, int progress_value){
 		Log.i("MSG OUT", "Reglage bordure: "+progress_value);
+		Amarino.sendDataToArduino(context, ConnectionManager.getInstance().getAddress(), 'D', progress_value);
 		RobAlimInterfaceIn robot_in = RobAlimInterfaceIn.getInstance();
 		robot_in.updateData(0, "consigne/"+progress_value);
 	}

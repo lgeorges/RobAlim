@@ -32,7 +32,7 @@ public class ConnectionManager {
 	public void connectDevice(Activity activity, String address) {
 //		Log.d("ConnectionManager","connect");
 		device_address=address;
-		activity.registerReceiver(arduino_receiver, new IntentFilter(AmarinoIntent.ACTION_CONNECTION_FAILED));
+		activity.registerReceiver(arduino_receiver, new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
 		Amarino.connect(activity, address);
 		((MainMenu)activity).updateConnection(true);
 	}
