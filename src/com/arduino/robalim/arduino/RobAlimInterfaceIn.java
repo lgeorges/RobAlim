@@ -1,6 +1,11 @@
 package com.arduino.robalim.arduino;
 
+import java.util.ArrayList;
 import java.util.Observable;
+
+import com.arduino.robalim.model.ActionModel;
+import com.arduino.robalim.model.AvancementEnum;
+import com.arduino.robalim.model.FinActionEnum;
 
 import android.content.IntentFilter;
 import android.util.Log;
@@ -19,12 +24,14 @@ public class RobAlimInterfaceIn extends Observable {
 	private String alimentation_value = "No value defined";
 	private int border_value = 0;
 	private int distribution_value = 0;
+	private ArrayList<ActionModel> actions;
 	
 	public RobAlimInterfaceIn(){
 		mode_manuel=false;
 		statut="No Statut";
 		action="No action";
 		variateur="No variateur";
+		actions = new ArrayList<ActionModel>();
 	}
 	
 	public static RobAlimInterfaceIn getInstance(){
@@ -61,6 +68,9 @@ public class RobAlimInterfaceIn extends Observable {
 	public int getBorderValue(){
 		return border_value;
 	}
+	public ArrayList<ActionModel> getActions(){
+		return actions;
+	}
 	
 	public void updateData(int data_type, String data){
 //		action=data;
@@ -77,6 +87,19 @@ public class RobAlimInterfaceIn extends Observable {
 		}		
 		else if(identifiant.equalsIgnoreCase("action"))
 			action = parts[1];
+		
+		else if(identifiant.equalsIgnoreCase("actions")){
+			int num_action = Integer.parseInt(parts[1]);
+			AvancementEnum a = AvancementEnum.values()[Integer.parseInt(parts[2])];
+			FinActionEnum fa = FinActionEnum.values()[Integer.parseInt(parts[3])];
+			short d = Short.parseShort(parts[4]);
+			Log.d("MSG IN", a+" "+fa+" "+d);
+			if(num_action<actions.size())
+				actions.set(num_action, new ActionModel(a,fa,d));
+			else
+				actions.add(new ActionModel(a,fa,d));
+		}
+			
 
 		else if(identifiant.equalsIgnoreCase("alimentation"))
 			alimentation_value = parts[1];

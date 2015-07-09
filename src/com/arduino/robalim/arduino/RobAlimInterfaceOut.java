@@ -2,6 +2,10 @@ package com.arduino.robalim.arduino;
 
 //import com.arduino.robalim.UserInputGraph;
 
+import java.util.ArrayList;
+
+import com.arduino.robalim.model.ActionModel;
+
 import android.content.Context;
 import android.util.Log;
 import at.abraxas.amarino.Amarino;
@@ -89,6 +93,23 @@ public class RobAlimInterfaceOut {
 		Amarino.sendDataToArduino(context, ConnectionManager.getInstance().getAddress(), 'D', progress_value);
 		RobAlimInterfaceIn robot_in = RobAlimInterfaceIn.getInstance();
 		robot_in.updateData(0, "consigne/"+progress_value);
+	}
+	
+	public void importActions(Context context){
+		RobAlimInterfaceIn robot_in = RobAlimInterfaceIn.getInstance();
+		robot_in.updateData(0, "actions/0/0/0/123");
+		robot_in.updateData(0, "actions/1/2/2/123");
+	}
+	
+	public void sendActions(Context context){
+		
+		RobAlimInterfaceIn robot_in = RobAlimInterfaceIn.getInstance();
+		ArrayList<ActionModel> actions = robot_in.getActions();
+		for(ActionModel a : actions){
+			String char_action = actions.indexOf(a)+"/"+a.getAvancement().ordinal()+"/"+a.getFinAction().ordinal()+"/"+a.getDistance();
+			Log.i("MSG OUT", "send actions: "+char_action);
+			Amarino.sendDataToArduino(context, ConnectionManager.getInstance().getAddress(), 'D', char_action);
+		}
 	}
 	
 	

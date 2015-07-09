@@ -1,11 +1,14 @@
 package com.arduino.robalim.view;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,8 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -20,122 +25,64 @@ import android.widget.TextView;
 
 import com.arduino.robalim.arduino.RobAlimInterfaceIn;
 import com.arduino.robalim.arduino.RobAlimInterfaceOut;
+import com.arduino.robalim.model.ActionModel;
 import com.example.robalim.R;
 
 
 public class ReglagesFragmentView extends Fragment implements Observer {
 	private RobAlimInterfaceIn robot_in;
 	private RobAlimInterfaceOut robot_out; 
-	private Spinner spinner;
 	private Activity main_activity;
-	private Button mode_button;
-	private Button send_alimentation_button;
-	private SeekBar seekbar_distribution;
-	private SeekBar seekbar_border;
-	private TextView border_value;
-	private TextView distrib_value;
-	private TextView alimentation_value;
+	private LinearLayout actions_container;
+	private ContentReglagesFragmentView fragments[];
+	private FragmentManager fragment_manager;
+	private ArrayList<ActionModel> actions;
 	private boolean view_created =false;
 	
 	public ReglagesFragmentView(){
 		super();
         robot_out= RobAlimInterfaceOut.getInstance();
         robot_in= RobAlimInterfaceIn.getInstance();
-        
         robot_in.addObserver(this);
+        actions = robot_in.getActions();
 	}
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.reglages_view, container, false);
 
         main_activity=getActivity();
-        
-        seekbar_border=(SeekBar)rootView.findViewById(R.id.seekbar_border);
-        seekbar_distribution=(SeekBar)rootView.findViewById(R.id.seekbar_distribution);
-        
-        border_value=(TextView)rootView.findViewById(R.id.border_value);
-        distrib_value=(TextView)rootView.findViewById(R.id.distrib_value);
-        alimentation_value=(TextView)rootView.findViewById(R.id.alimentation_value);
-        
-        spinner = (Spinner)rootView.findViewById(R.id.select_alimentation);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(main_activity,R.array.alimentations_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        
-        mode_button=(Button)rootView.findViewById(R.id.mode_button);
-        mode_button.setOnClickListener(new OnClickListener() {
+        actions_container=(LinearLayout)rootView.findViewById(R.id.actions_container);
+        Button add_action_btn = (Button)rootView.findViewById(R.id.add_action_btn);
+        add_action_btn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				ActionModel action = new ActionModel();
+				actions.add(action);
+				addActionView(action);
+			}
+		});
+        Button rm_action_btn = (Button)rootView.findViewById(R.id.rm_action_btn);
+        Button send_actions_btn = (Button)rootView.findViewById(R.id.send_actions_btn);
+        send_actions_btn.setOnClickListener( new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				if(robot_in.isInManualMode())
-					robot_out.setModeAuto(main_activity);
-				else	
-					robot_out.setModeManuel(main_activity);
+				robot_out.sendActions(main_activity);
+				
 			}
 		});
-        
-        send_alimentation_button=(Button)rootView.findViewById(R.id.send_alimentation_button);
-        send_alimentation_button.setOnClickListener(new OnClickListener() {
-			
+
+        Button import_actions_btn = (Button)rootView.findViewById(R.id.import_actions_btn);
+        import_actions_btn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String alimentation=spinner.getSelectedItem().toString();
-				robot_out.envoyerAlimentationValue(main_activity, alimentation);
-				Log.i("ReglagesView","alimentation "+alimentation);
+				robot_out.importActions(main_activity);
 			}
 		});
-        
-        seekbar_border.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-        	
-        	private int adaptProgressValue(int progress){
-				int max = getResources().getInteger(R.integer.max_seekbar_border);
-				int min = getResources().getInteger(R.integer.min_seekbar_border);
-				int value = progress*(max-min)/100 + min;
-				
-				return value;
-        	}
-        	
-        	@Override
-        	public void onStopTrackingTouch(SeekBar seekBar) {
-        		int value = adaptProgressValue(seekBar.getProgress());
-        		Log.d("Reglages","value: " +value);
-        		robot_out.reglageBordure(main_activity, value);
-        	}
-        	@Override
-        	public void onStartTrackingTouch(SeekBar seekBar) {
-        	}
-        	@Override
-        	public void onProgressChanged(SeekBar seekBar, int progress,
-        			boolean fromUser) {
-        		border_value.setText(""+adaptProgressValue(progress));
-        	}
-        });
-        
-        seekbar_distribution.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-			
-        	private int adaptProgressValue(int progress){
-				int max = getResources().getInteger(R.integer.max_seekbar_distrib);
-				int min = getResources().getInteger(R.integer.min_seekbar_distrib);
-				int value = progress*(max-min)/100 + min;
-				
-				return value;
-        	}
-        	
-			@Override
-			public void onStopTrackingTouch(SeekBar seekBar) {        		
-				int value = adaptProgressValue(seekBar.getProgress());
-				Log.d("Reglages","value: " +value);
-				robot_out.reglageVitesseDistribution(main_activity, value);
-			}
-			@Override
-			public void onStartTrackingTouch(SeekBar seekBar) {
-			}
-			@Override
-			public void onProgressChanged(SeekBar seekBar, int progress,
-					boolean fromUser) {
-				distrib_value.setText(""+adaptProgressValue(progress));
-			}
-		});
+        fragment_manager = getFragmentManager();
+        for(ActionModel action : actions){
+        	this.addActionView(action);
+        }
         
         view_created=true;
         update(null,null);
@@ -145,42 +92,56 @@ public class ReglagesFragmentView extends Fragment implements Observer {
 	@Override
 	public void update(Observable observable, Object data) {
 		if(view_created){
-			boolean mode_manuel = robot_in.isInManualMode();
-			int border = robot_in.getBorderValue();
-			int distrib = robot_in.getDistributionValue();
-			String alimentation = robot_in.getAlimentationValue();
-			String statut = robot_in.getStatut();
-
-			if(mode_manuel)
-				mode_button.setText("Manuel");
-//				mode_button.setChecked(true);
-			else
-				mode_button.setText("Automatique");
-//				mode_button.setChecked(false);
-			
-			border_value.setText(""+border);
-			distrib_value.setText(""+distrib);
-			alimentation_value.setText(alimentation);
-
-			seekbar_border.setProgress(adaptValueProgressBorder(border));
-			seekbar_distribution.setProgress(adaptValueProgressDistrib(distrib));
+			actions_container.removeAllViews();
+			for(ActionModel a : actions){
+				addActionView(a);
+			}
 
 		}
 	}
 	
-	private int adaptValueProgressDistrib(int value){
-		int max = getResources().getInteger(R.integer.max_seekbar_distrib);
-		int min = getResources().getInteger(R.integer.min_seekbar_distrib);
-		int progress= (value-min)*100/(max-min);
+	public void addActionView(ActionModel action){
+		int index  = actions.indexOf(action)+1;//index doit etre différent de zero
+		TextView action_title = new TextView(main_activity);
+		actions_container.addView(action_title);
+		action_title.setText("N°action "+index);
+		action_title.setClickable(true);
 		
-		return progress;
+		ContentReglagesFragmentView fragment = new ContentReglagesFragmentView(action);
+		FrameLayout action_content = new FrameLayout(main_activity);
+
+		actions_container.addView(action_content);
+		action_content.setId(index);
+		fragment_manager.beginTransaction().add(action_content.getId(),fragment).commit();
+//		fragment_manager.beginTransaction().hide(fragment).commit();
+		fragment.hide(fragment_manager);
+		action_title.setOnClickListener(new DisplayContentListener(fragment));
+		
 	}
 	
-	private int adaptValueProgressBorder(int value){
-		int max = getResources().getInteger(R.integer.max_seekbar_border);
-		int min = getResources().getInteger(R.integer.min_seekbar_border);
-		int progress= (value-min)*100/(max-min);
+	class DisplayContentListener implements OnClickListener{
 		
-		return progress;
+		private boolean is_displayed;
+		private ContentReglagesFragmentView fragment;
+		
+		public DisplayContentListener(ContentReglagesFragmentView fragment) {
+			this.fragment=fragment;
+			is_displayed=false;
+		}
+		
+		@Override
+		public void onClick(View v) {
+			if(is_displayed){
+//				fragment_manager.beginTransaction().hide(fragment).commit();
+				fragment.hide(fragment_manager);
+				is_displayed=false;
+			}
+			else{
+				fragment.show(fragment_manager);
+//				fragment_manager.beginTransaction().show(fragment).commit();
+				is_displayed=true;
+		    }
+		}
+		
 	}
 }

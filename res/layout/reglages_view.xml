@@ -1,140 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:text="Mode"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <Space
-            android:layout_width="100dp"
-            android:layout_height="1dp" />
-
-        <Button
-            android:id="@+id/mode_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-        
-    </LinearLayout>
-    
-    <Space
-		android:layout_width="1dp"
-		android:layout_height="30dp"/>
-    
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-      
-        <TextView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="Vitesse de distribution:"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />   
-        
-        <Space
-			android:layout_width="10dp"
-			android:layout_height="1dp"/>  
-		 
-       <TextView
-           	android:id="@+id/distrib_value"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="0"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />     
-        
-    </LinearLayout>
-
-
-    <SeekBar
-        android:id="@+id/seekbar_distribution"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    
-    <Space
-		android:layout_width="1dp"
-		android:layout_height="30dp"/>
-    
-<LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-      
-        <TextView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="Distance Robot/Cornadis:"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />   
-        
-        <Space
-			android:layout_width="10dp"
-			android:layout_height="1dp"/>  
-		 
-       <TextView
-           	android:id="@+id/border_value"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="0"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
-    </LinearLayout>
-
-    <SeekBar
-        android:id="@+id/seekbar_border"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/scrollView1"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content" >
+<HorizontalScrollView
+	android:id="@+id/horizontalScrollView1"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content" >
 	
-	<Space
-		android:layout_width="10dp"
-		android:layout_height="1dp"/>
 	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal" >
-			
-		<TextView
-			android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="Alimentation: "
-		    android:textAppearance="?android:attr/textAppearanceLarge" />
-			
-		<TextView
-		    android:id="@+id/alimentation_value"
-			android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:text="Test"
-		    android:textAppearance="?android:attr/textAppearanceLarge" />    
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical" >
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="horizontal" >
+
+			<Button
+			    android:id="@+id/add_action_btn"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Ajouter Action" />
+			<Button
+			    android:id="@+id/rm_action_btn"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Supprimer Action" />
 		    
-	</LinearLayout>
-	<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal" >
-		    
-		    <Spinner
-		        android:id="@+id/select_alimentation"
-		        android:layout_width="200dp"
-		        android:layout_height="wrap_content" />	
-		    
-		    <Space
-			    android:layout_width="20dp"
-			    android:layout_height="1dp" />
-		        	
-		    <Button
-		        android:id="@+id/send_alimentation_button"
-		        android:layout_width="wrap_content"
-		        android:layout_height="match_parent"
-		        android:layout_gravity="right"
-		        android:text="Changer" />
+	    </LinearLayout>
+		<LinearLayout
+		    android:id="@+id/actions_container"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="vertical" >
 		</LinearLayout>
-	
-</LinearLayout>
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="horizontal" >
+
+			<Button
+			    android:id="@+id/import_actions_btn"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Importer Actions" />
+			<Button
+			    android:id="@+id/send_actions_btn"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Envoyer Actions" />
+		    
+	    </LinearLayout>
+	</LinearLayout>
+</HorizontalScrollView>
+</ScrollView>
