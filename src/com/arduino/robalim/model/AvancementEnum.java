@@ -6,7 +6,7 @@ public enum AvancementEnum {
 	INDUCTIF("inductif"),
 	TOURNER_GAUCHE("Tourne à gauche"),
 	TOURNER_DROITE("Tourne à droite"),
-	HORS_MARCHE("Hors marhe");
+	HORS_MARCHE("Hors marche");
 	
 	private final String name;
 	AvancementEnum(String name){

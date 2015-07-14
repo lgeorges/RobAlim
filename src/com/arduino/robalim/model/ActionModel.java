@@ -2,24 +2,27 @@ package com.arduino.robalim.model;
 
 import java.util.ArrayList;
 
+import com.arduino.robalim.model.AlimentationModel.Passage;
+
 public class ActionModel {
 	private AvancementEnum avancement;
 	private FinActionEnum fin_action;
 	private short distance;
-	private AlimentationModel alimentation;
+	private ArrayList<PassageModel> passages;
 
 	
 	public ActionModel() {
 		avancement= AvancementEnum.HORS_MARCHE;
 		fin_action= FinActionEnum.PERTE_BANDE;
 		distance=0;
-		alimentation = new AlimentationModel();
+		passages = new ArrayList<PassageModel>();
 	}
-
-	public ActionModel(AvancementEnum a, FinActionEnum fa, short d) {
+	
+	public ActionModel(AvancementEnum a, FinActionEnum fa, short d, ArrayList<PassageModel> ps) {
 		avancement= a;
 		fin_action= fa;
 		distance=d;
+		passages = ps;
 	}
 		
 	public AvancementEnum getAvancement() {
@@ -46,12 +49,18 @@ public class ActionModel {
 		this.distance = distance;
 	}
 	
-	public void setPassage(short passage, short aliment, int vitesse ){
-		alimentation.setPassage(passage, aliment, vitesse);
+	public void setAlimentPassage(int idx, short aliment){
+		PassageModel p = passages.get(idx);
+		p.setAliment(aliment);
 	}
 	
-	public ArrayList<AlimentationModel.Passage> getPassages(){
-		return alimentation.getPassages();
+	public void setVitessePassage(int idx, int vitesse){
+		PassageModel p = passages.get(idx);
+		p.setVitesse(vitesse);
+	}
+	
+	public ArrayList<PassageModel> getPassages(){
+		return passages;
 	}
 		
 }

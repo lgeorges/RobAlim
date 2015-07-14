@@ -5,6 +5,9 @@ package com.arduino.robalim.arduino;
 import java.util.ArrayList;
 
 import com.arduino.robalim.model.ActionModel;
+import com.arduino.robalim.model.PassageModel;
+import com.arduino.robalim.model.AlimentationModel.Passage;
+import com.arduino.robalim.model.AvancementEnum;
 
 import android.content.Context;
 import android.util.Log;
@@ -97,7 +100,9 @@ public class RobAlimInterfaceOut {
 	
 	public void importActions(Context context){
 		RobAlimInterfaceIn robot_in = RobAlimInterfaceIn.getInstance();
-		robot_in.updateData(0, "actions/0/0/0/123");
+//		robot_in.updateData(0, "actions/0/0/0/123/");
+//		robot_in.updateData(0, "actions/0/0/0/123/12_12");
+		robot_in.updateData(0, "actions/0/0/0/123/12_12|14_156|45_789");
 		robot_in.updateData(0, "actions/1/2/2/123");
 	}
 	
@@ -107,6 +112,14 @@ public class RobAlimInterfaceOut {
 		ArrayList<ActionModel> actions = robot_in.getActions();
 		for(ActionModel a : actions){
 			String char_action = actions.indexOf(a)+"/"+a.getAvancement().ordinal()+"/"+a.getFinAction().ordinal()+"/"+a.getDistance();
+			if(a.getAvancement()== AvancementEnum.ULTRASON_GAUCHE){
+				char_action = char_action+"/";
+				for(PassageModel p : a.getPassages())
+					char_action=char_action+p.getAliment()+"_"+p.getVitesse()+"|";
+			}
+				
+				
+			
 			Log.i("MSG OUT", "send actions: "+char_action);
 			Amarino.sendDataToArduino(context, ConnectionManager.getInstance().getAddress(), 'D', char_action);
 		}

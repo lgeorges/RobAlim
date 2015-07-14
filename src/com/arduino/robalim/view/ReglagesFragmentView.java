@@ -4,23 +4,27 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import android.R.string;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.TextView;
 
 import com.arduino.robalim.arduino.RobAlimInterfaceIn;
@@ -37,6 +41,7 @@ public class ReglagesFragmentView extends Fragment implements Observer {
 	private ContentReglagesFragmentView fragments[];
 	private FragmentManager fragment_manager;
 	private ArrayList<ActionModel> actions;
+	private int nb_passages;
 	private boolean view_created =false;
 	
 	public ReglagesFragmentView(){
@@ -84,6 +89,21 @@ public class ReglagesFragmentView extends Fragment implements Observer {
         	this.addActionView(action);
         }
         
+        EditText nb_passages_edit =(EditText)rootView.findViewById(R.id.nb_passages);
+        nb_passages_edit.setOnEditorActionListener( new OnEditorActionListener() {
+			
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				String txt = v.getText().toString();
+				if(!txt.equals(""))
+					nb_passages = Integer.parseInt(txt);
+				else
+					nb_passages = 0;
+
+				return false;
+			}
+		});
+        
         view_created=true;
         update(null,null);
         return rootView;
@@ -107,7 +127,7 @@ public class ReglagesFragmentView extends Fragment implements Observer {
 		action_title.setText("N°action "+index);
 		action_title.setClickable(true);
 		
-		ContentReglagesFragmentView fragment = new ContentReglagesFragmentView(action);
+		ContentReglagesFragmentView fragment = new ContentReglagesFragmentView(action,this);
 		FrameLayout action_content = new FrameLayout(main_activity);
 
 		actions_container.addView(action_content);
@@ -117,6 +137,9 @@ public class ReglagesFragmentView extends Fragment implements Observer {
 		fragment.hide(fragment_manager);
 		action_title.setOnClickListener(new DisplayContentListener(fragment));
 		
+	}
+	public int getNbPassages(){
+		return nb_passages;
 	}
 	
 	class DisplayContentListener implements OnClickListener{

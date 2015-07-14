@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <TextView
+        android:layout_width="100dp"
+        android:id="@+id/num_passage_value" />
+
+	 <EditText
+	     android:id="@+id/aliment_value"
+	     android:layout_width="100dp"
+	     android:ems="10"
+	     android:inputType="number" />
+
+	<EditText
+		android:id="@+id/vitesse_value"
+	    android:layout_width="100dp"
+	    android:ems="10"
+	    android:inputType="number" />
+</TableRow>
+<!-- <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal" >
@@ -36,4 +56,4 @@
 	        android:ems="10"
 	        android:inputType="number" />
 	</TableRow>
-</TableLayout>
+</TableLayout> -->

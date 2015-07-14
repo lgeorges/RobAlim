@@ -8,27 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-<!--         <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-           	
-           	<TextView
-           	    android:layout_width="wrap_content"
-           	    android:layout_height="wrap_content"
-           	    android:text="N°action:"
-           	    android:textAppearance="?android:attr/textAppearanceMedium" />
-           	
-           	<TextView
-           	    android:id="@+id/action_value"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_marginLeft="5dp"
-		        android:text="Statut"
-		        android:textAppearance="?android:attr/textAppearanceMedium" /> 
-            
-        </TableRow>-->
-
         <TableRow
             android:id="@+id/tableRow2"
             android:layout_width="wrap_content"
@@ -90,14 +69,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
            	
-			<LinearLayout
-			    android:id="@+id/passages_container"
-			    android:layout_width="match_parent"
-			    android:layout_height="match_parent"
-			    android:orientation="vertical" >
-			</LinearLayout>
-
         </TableRow>
 
+    </TableLayout><TableLayout
+        android:id="@+id/passages_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TableRow>
+
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="1dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aliment" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="vitesse" />
+        </TableRow>
     </TableLayout>
 </LinearLayout>

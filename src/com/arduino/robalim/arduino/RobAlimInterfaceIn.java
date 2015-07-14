@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import com.arduino.robalim.model.ActionModel;
+import com.arduino.robalim.model.AlimentationModel;
+import com.arduino.robalim.model.AlimentationModel.Passage;
 import com.arduino.robalim.model.AvancementEnum;
 import com.arduino.robalim.model.FinActionEnum;
+import com.arduino.robalim.model.PassageModel;
 
+import android.app.ListActivity;
 import android.content.IntentFilter;
 import android.util.Log;
 import at.abraxas.amarino.AmarinoIntent;
@@ -94,10 +98,26 @@ public class RobAlimInterfaceIn extends Observable {
 			FinActionEnum fa = FinActionEnum.values()[Integer.parseInt(parts[3])];
 			short d = Short.parseShort(parts[4]);
 			Log.d("MSG IN", a+" "+fa+" "+d);
+			ArrayList<PassageModel> passages = new ArrayList<PassageModel>();
+
+			if(a==AvancementEnum.ULTRASON_GAUCHE && parts.length>5){
+				String[] passages_txt = parts[5].split("\\|");
+				for(String p : passages_txt){
+					Log.d("msg in passage:"," "+p);
+					String [] p_txt = p.split("_");
+					if(p_txt.length>=2){
+						passages.add(new PassageModel(Short.parseShort(p_txt[0]), Integer.parseInt(p_txt[1])));
+						Log.d("msg in passage:"," "+p_txt[0]+" "+p_txt[1]);
+					}
+					
+				}
+			}
 			if(num_action<actions.size())
-				actions.set(num_action, new ActionModel(a,fa,d));
+				actions.set(num_action, new ActionModel(a,fa,d,passages));
 			else
-				actions.add(new ActionModel(a,fa,d));
+				actions.add(new ActionModel(a,fa,d,passages));			
+			
+			
 		}
 			
 

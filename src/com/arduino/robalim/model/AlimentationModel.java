@@ -16,18 +16,38 @@ public class AlimentationModel {
 			this.aliment=aliment;
 			this.vitesse=vitesse;
 		}
+		
+		public short getAliment(){
+			return aliment;
+		}
+		
+		public void setAliment(short a){
+			aliment=a;
+		}
+		
+		public int getVitesse(){
+			return vitesse;
+		}
+		
+		public void setVitesse(int v){
+			vitesse=v;
+		}
 	}
 	
 	private ArrayList<Passage> passages;
 	
 	public AlimentationModel(){
 		passages=new ArrayList<AlimentationModel.Passage>();
-		for(int i=0;i<6; i++)
-			passages.add(new Passage());
+
 	}
 	
-	public void setPassage(short passage, short aliment, int vitesse ){
-		passages.set(passage, new Passage(aliment, vitesse));
+	public void setAlimentPassage(int idx, short aliment){
+
+	}
+	
+	public void setVitessePassage(int idx, int vitesse){
+		Passage p = passages.get(idx);
+		p.setVitesse(vitesse);
 	}
 	
 	public ArrayList<Passage> getPassages(){
