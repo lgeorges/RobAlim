@@ -7,9 +7,12 @@ import java.util.Observable;
 import com.arduino.robalim.arduino.RobAlimInterfaceIn;
 import com.arduino.robalim.arduino.RobAlimInterfaceOut;
 import com.arduino.robalim.model.ActionModel;
+import com.arduino.robalim.model.AlimentEnum;
 import com.arduino.robalim.model.AvancementEnum;
+import com.arduino.robalim.model.DistanceEnum;
 import com.arduino.robalim.model.FinActionEnum;
 import com.arduino.robalim.model.PassageModel;
+import com.arduino.robalim.model.VitesseEnum;
 import com.arduino.robalim.view.ReglagesFragmentView.DisplayContentListener;
 import com.example.robalim.R;
 
@@ -45,7 +48,7 @@ public class ContentReglagesFragmentView extends Fragment {
 	private ActionModel action;
 	private Spinner avancement_value;
 	private Spinner fin_action_value;
-	private EditText distance_value;
+	private Spinner distance_value;
 	private TableLayout passages_container;
 	private ReglagesFragmentView fragment_parent;
 	private boolean view_created =false;
@@ -70,19 +73,25 @@ public class ContentReglagesFragmentView extends Fragment {
         avancement_value =(Spinner)rootView.findViewById(R.id.avancement_value);
         fin_action_value =(Spinner)rootView.findViewById(R.id.fin_action_value);
 
-        distance_value =(EditText)rootView.findViewById(R.id.distance_value);
-        distance_value.setOnEditorActionListener( new OnEditorActionListener() {
-			
+        distance_value=(Spinner)rootView.findViewById(R.id.distance_value);
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(main_activity, android.R.layout.simple_spinner_item, DistanceEnum.getList());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        distance_value.setAdapter(adapter);
+        distance_value.setOnItemSelectedListener(new OnItemSelectedListener() {
+
 			@Override
-			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				String text = distance_value.getText().toString();
-				Log.d("ContentReglagesFragmentView", ""+text);
-				action.setDistance(Short.parseShort(text));
-				return false;
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				action.setDistance(Short.parseShort(DistanceEnum.getList()[position]));
 			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				Log.d("ContentReglagesFragmentView", "nothing selected");
+			}
+        	
 		});
         
-        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(main_activity, android.R.layout.simple_spinner_item, AvancementEnum.getList());
+        adapter = new ArrayAdapter<CharSequence>(main_activity, android.R.layout.simple_spinner_item, AvancementEnum.getList());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         avancement_value.setAdapter(adapter);
         avancement_value.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -140,7 +149,7 @@ public class ContentReglagesFragmentView extends Fragment {
 	private void updateValues(){
 		avancement_value.setSelection(action.getAvancement().ordinal());
         fin_action_value.setSelection(action.getFinAction().ordinal());
-        distance_value.setText(action.getDistance()+"");
+        distance_value.setSelection(DistanceEnum.getOrdinal(action.getDistance()));
         
 		for(PassageModel p : action.getPassages())
 			passages_container.addView(getPassageRow(p));
@@ -148,12 +157,10 @@ public class ContentReglagesFragmentView extends Fragment {
 
 	public void show(FragmentManager manager){
 		manager.beginTransaction().show(this).commit();
-		Log.d("ContentReglagesView","show");
 	}
 	
 	public void hide(FragmentManager manager){
 		manager.beginTransaction().hide(this).commit();
-		Log.d("ContentReglagesView","hide"+view_created);
 		
 	}
 	
@@ -161,37 +168,46 @@ public class ContentReglagesFragmentView extends Fragment {
 		TableRow result = (TableRow)LayoutInflater.from(main_activity).inflate(R.layout.passages_content_view, null);
 		final int index = action.getPassages().indexOf(p);
 		TextView num  =(TextView)result.findViewById(R.id.num_passage_value);
-		num.setText("passage nÂ°"+(index+1));
-		EditText aliment_value=(EditText)result.findViewById(R.id.aliment_value);
-		aliment_value.setText(""+p.getAliment());
-		aliment_value.setOnEditorActionListener( new OnEditorActionListener() {
-			
-			@Override
-			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				String text = v.getText().toString();
-				Log.d("ContentReglagesFragmentView aliment ", ""+text);
-				if(!text.equals(""))
-					action.setAlimentPassage(index, (Short.parseShort(text)));
-				else
-					action.setAlimentPassage(index, (short)0);
-				return false;
-			}
-		});
+		num.setText("passage n°"+(index));       
 		
-        EditText vitesse_value=(EditText)result.findViewById(R.id.vitesse_value);
-        vitesse_value.setText(""+p.getVitesse());
-        vitesse_value.setOnEditorActionListener( new OnEditorActionListener() {
-			
+		Spinner aliment_value=(Spinner)result.findViewById(R.id.aliment_value);
+		ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(main_activity, android.R.layout.simple_spinner_item, AlimentEnum.getList());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        aliment_value.setAdapter(adapter);
+        aliment_value.setOnItemSelectedListener(new OnItemSelectedListener() {
+
 			@Override
-			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				String text = v.getText().toString();
-				Log.d("ContentReglagesFragmentView vitesse ", ""+text);
-				if(!text.equals(""))
-					action.setVitessePassage(index, (Integer.parseInt(text)));
-				else
-					action.setVitessePassage(index, (int)0);
-				return false;
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				action.setAlimentPassage(index, (short)AlimentEnum.values()[position].ordinal());
 			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				Log.d("ContentReglagesFragmentView", "nothing selected");
+			}
+        	
+		});
+
+		
+		
+		
+        Spinner vitesse_value=(Spinner)result.findViewById(R.id.vitesse_value);
+        adapter = new ArrayAdapter<CharSequence>(main_activity, android.R.layout.simple_spinner_item, VitesseEnum.getList());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        vitesse_value.setAdapter(adapter);
+        vitesse_value.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				
+				action.setVitessePassage(index, Integer.parseInt(VitesseEnum.getList()[position]));
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				Log.d("ContentReglagesFragmentView", "nothing selected");
+			}
+        	
 		});
 		return result;
 	}

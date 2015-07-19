@@ -13,6 +13,32 @@
 	    android:layout_height="match_parent"
 	    android:orientation="vertical" >
 	    
+	   	<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="horizontal" >
+
+			<TextView
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Passage en cours: " />
+			
+		    <EditText
+		        android:id="@+id/current_passage"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:ems="3"
+		        android:inputType="number" />
+		    
+		    <Button
+		        android:id="@+id/send_passage_btn"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right"
+		        android:text="Changer" />
+		    
+	    </LinearLayout>
+	    	   	
 		<LinearLayout
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
@@ -27,6 +53,7 @@
 		        android:id="@+id/nb_passages"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
+		        android:ems="3"
 		        android:inputType="number" />
 		    
 	    </LinearLayout>

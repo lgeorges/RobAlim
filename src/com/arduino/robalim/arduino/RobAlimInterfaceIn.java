@@ -28,6 +28,7 @@ public class RobAlimInterfaceIn extends Observable {
 	private String alimentation_value = "No value defined";
 	private int border_value = 0;
 	private int distribution_value = 0;
+	private int current_passage = 0;
 	private ArrayList<ActionModel> actions;
 	
 	public RobAlimInterfaceIn(){
@@ -74,6 +75,9 @@ public class RobAlimInterfaceIn extends Observable {
 	}
 	public ArrayList<ActionModel> getActions(){
 		return actions;
+	}
+	public int getCurrentPassage(){
+		return current_passage;
 	}
 	
 	public void updateData(int data_type, String data){
@@ -150,6 +154,9 @@ public class RobAlimInterfaceIn extends Observable {
 				inductif_values[1] = Integer.parseInt(parts[2]);
 			if(parts[1].equals("2"))
 				inductif_values[2] = Integer.parseInt(parts[2]);
+		}
+		else if(identifiant.equalsIgnoreCase("passage")){
+			current_passage=Integer.parseInt(parts[2]);
 		}
 		
 		setChanged();
