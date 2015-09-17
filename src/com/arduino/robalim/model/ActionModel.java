@@ -12,7 +12,7 @@ public class ActionModel {
 
 	
 	public ActionModel() {
-		avancement= AvancementEnum.HORS_MARCHE;
+		avancement= AvancementEnum.ULTRASON_GAUCHE;
 		fin_action= FinActionEnum.PERTE_BANDE;
 		distance=0;
 		passages = new ArrayList<PassageModel>();

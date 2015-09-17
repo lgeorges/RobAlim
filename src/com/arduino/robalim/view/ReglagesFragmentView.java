@@ -41,6 +41,7 @@ public class ReglagesFragmentView extends Fragment implements Observer {
 	private ContentReglagesFragmentView fragments[];
 	private FragmentManager fragment_manager;
 	private ArrayList<ActionModel> actions;
+	private EditText current_passage;
 	private int nb_passages;
 	private boolean view_created =false;
 	
@@ -104,34 +105,51 @@ public class ReglagesFragmentView extends Fragment implements Observer {
 			}
 		});
         
+        current_passage = (EditText) rootView.findViewById(R.id.current_passage);
+        Button send_passage_btn = (Button)rootView.findViewById(R.id.send_passage_btn);
+        send_passage_btn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String txt = current_passage.getText().toString();
+				if(!txt.equals(""))
+					robot_out.sendCurrentPassage(main_activity, Integer.parseInt(txt));
+				else
+					robot_out.sendCurrentPassage(main_activity, 0);
+			}
+		});
         view_created=true;
-        update(null,null);
+        update(null,null); 
+        updateActionViews();
         return rootView;
 	}
 
 	@Override
 	public void update(Observable observable, Object data) {
 		if(view_created){
-			actions_container.removeAllViews();
-			for(ActionModel a : actions){
-				addActionView(a);
-			}
-
+			current_passage.setText(""+robot_in.getCurrentPassage());
 		}
 	}
 	
+	public void updateActionViews(){
+		actions_container.removeAllViews();
+		for(ActionModel a : actions){
+			addActionView(a);
+		}			
+	}
+	
 	public void addActionView(ActionModel action){
-		int index  = actions.indexOf(action)+1;//index doit etre différent de zero
+		int index  = actions.indexOf(action);//index doit etre différent de zero
 		TextView action_title = new TextView(main_activity);
 		actions_container.addView(action_title);
-		action_title.setText("N°action "+index);
+		action_title.setText("N�action "+index);
 		action_title.setClickable(true);
 		
 		ContentReglagesFragmentView fragment = new ContentReglagesFragmentView(action,this);
 		FrameLayout action_content = new FrameLayout(main_activity);
 
 		actions_container.addView(action_content);
-		action_content.setId(index);
+		action_content.setId(index+1);
 		fragment_manager.beginTransaction().add(action_content.getId(),fragment).commit();
 //		fragment_manager.beginTransaction().hide(fragment).commit();
 		fragment.hide(fragment_manager);
