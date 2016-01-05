@@ -11,11 +11,13 @@ import at.abraxas.amarino.AmarinoIntent;
 public class ConnectionManager {
 	private static ConnectionManager instance = new ConnectionManager();
 	private ArduinoReceiver arduino_receiver;
+	private ArduinoConnectionTester arduino_connection_tester;
 	private String device_address;
 	
 	public ConnectionManager(){
 		super();
 		arduino_receiver= new ArduinoReceiver();
+		arduino_connection_tester = new ArduinoConnectionTester();
 	}
 	public static ConnectionManager getInstance(){
 		return instance;
@@ -30,9 +32,12 @@ public class ConnectionManager {
 	}
 	
 	public void connectDevice(Activity activity, String address) {
-//		Log.d("ConnectionManager","connect");
+		Log.d("ConnectionManager","connect: "+address);
 		device_address=address;
 		activity.registerReceiver(arduino_receiver, new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
+		activity.registerReceiver(arduino_connection_tester, new IntentFilter(AmarinoIntent.ACTION_CONNECTED));
+		activity.registerReceiver(new ArduinoConnectionTester(), new IntentFilter(AmarinoIntent.ACTION_DISCONNECTED));
+
 		Amarino.connect(activity, address);
 		((MainMenu)activity).updateConnection(true);
 	}

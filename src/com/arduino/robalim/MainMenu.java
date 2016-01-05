@@ -29,6 +29,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 import at.abraxas.amarino.AmarinoIntent;
@@ -38,6 +39,8 @@ public class MainMenu extends Activity {
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     private ConnectionManager connection_manager;
+    private MenuItem connection_btn;
+    private Activity main_activity;
 
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
@@ -50,6 +53,7 @@ public class MainMenu extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        main_activity=this;
 
         mTitle = mDrawerTitle = getTitle();
         menu_items = getResources().getStringArray(R.array.menu_array);
@@ -74,6 +78,7 @@ public class MainMenu extends Activity {
 //                invalidateOptionsMenu();
             }
         };
+        
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         connection_manager=ConnectionManager.getInstance();
         
@@ -94,6 +99,16 @@ public class MainMenu extends Activity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         menu_bar=menu;
+        
+        connection_btn = menu_bar.findItem(R.id.connection_led);
+        connection_btn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				connection_manager.connectDevice(main_activity,connection_manager.getAddress());
+				return false;
+			}
+		});        
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -169,6 +184,6 @@ public class MainMenu extends Activity {
     }
     
     public void updateConnection(boolean connected){
-    	menu_bar.findItem(R.id.connection_led).setIcon(R.drawable.connection_on);
+    	connection_btn.setIcon(R.drawable.connection_on);
     }
 }

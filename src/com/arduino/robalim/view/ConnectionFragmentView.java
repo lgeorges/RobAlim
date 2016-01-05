@@ -31,6 +31,7 @@ public class ConnectionFragmentView extends Fragment {
 	private ConnectionManager connection_manager;
 	private EditText idField;
 	private Button button;
+	private Button disconnect_button;
 	private String device_address;
 	private Activity main_activity;
 	
@@ -41,6 +42,7 @@ public class ConnectionFragmentView extends Fragment {
 
         idField = (EditText)rootView.findViewById(R.id.deviceIDField);
         button = (Button)rootView.findViewById(R.id.okButton);
+        disconnect_button = (Button)rootView.findViewById(R.id.diconnect_button);
         main_activity=getActivity();
 
         button.setOnClickListener( new OnClickListener() {
@@ -57,6 +59,23 @@ public class ConnectionFragmentView extends Fragment {
 				
 			}
 		});
+        
+        disconnect_button.setOnClickListener( new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				device_address = idField.getText().toString();
+//				PreferenceManager.getDefaultSharedPreferences(this)
+//					.edit()
+//						.putString("device", DEVICE_ADDRESS)
+//							.commit();
+				
+				connection_manager.disconnectDevices(main_activity);
+				
+			}
+		});
+
+        
 //        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 //        DEVICE_ADDRESS = prefs.getString("device", "20:14:12:23:10:40");
         idField.setText("20:14:12:23:10:40");
