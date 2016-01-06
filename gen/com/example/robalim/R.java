@@ -59,15 +59,15 @@ public final class R {
     }
     public static final class id {
         public static final int SeekBarRed=0x7f0a001a;
-        public static final int actions_container=0x7f0a0030;
-        public static final int add_action_btn=0x7f0a002e;
+        public static final int actions_container=0x7f0a0032;
+        public static final int add_action_btn=0x7f0a0030;
         public static final int aliment_value=0x7f0a0025;
         public static final int avancement_value=0x7f0a0027;
-        public static final int button2=0x7f0a0034;
-        public static final int button3=0x7f0a0035;
-        public static final int button4=0x7f0a0036;
-        public static final int button5=0x7f0a0037;
-        public static final int button6=0x7f0a0038;
+        public static final int button2=0x7f0a0036;
+        public static final int button3=0x7f0a0037;
+        public static final int button4=0x7f0a0038;
+        public static final int button5=0x7f0a0039;
+        public static final int button6=0x7f0a003a;
         public static final int button_left=0x7f0a0020;
         public static final int button_right=0x7f0a0022;
         public static final int button_stop=0x7f0a0023;
