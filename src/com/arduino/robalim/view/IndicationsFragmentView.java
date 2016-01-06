@@ -25,8 +25,11 @@ public class IndicationsFragmentView extends Fragment implements Observer{
 	private RobAlimInterfaceOut robot_out;
 	private RobAlimInterfaceIn robot_in;
 	private Button send_action_button;
+	private Button send_alim_button;
 	private Spinner spinner;
+	private Spinner spinneralim;
 	private TextView program_value;
+	private TextView alimentation_value;
 	private TextView statut_value;
 	private TextView variateur_value;
 	private TextView ultrason_instant_0;
@@ -66,7 +69,13 @@ public class IndicationsFragmentView extends Fragment implements Observer{
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         
+        spinneralim = (Spinner)rootView.findViewById(R.id.select_alim);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(main_activity,R.array.alimentations_array, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinneralim.setAdapter(adapter1);
+        
         program_value = (TextView)rootView.findViewById(R.id.program_value);
+        alimentation_value = (TextView)rootView.findViewById(R.id.alimentation_value);
         variateur_value= (TextView)rootView.findViewById(R.id.variateur_value);
         statut_value= (TextView)rootView.findViewById(R.id.statut_value);
         
@@ -78,6 +87,18 @@ public class IndicationsFragmentView extends Fragment implements Observer{
 				String action=spinner.getSelectedItem().toString();
 				robot_out.envoyerAction(main_activity, action);
 			}
+        });
+        
+        
+		send_alim_button = (Button)rootView.findViewById(R.id.send_alim_button);
+	    send_alim_button.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					String action=spinneralim.getSelectedItem().toString();
+					robot_out.envoyerAlimentationValue(main_activity, action);
+				}	
+		
 		});
         view_created=true;
         update(null, null);
@@ -89,10 +110,12 @@ public class IndicationsFragmentView extends Fragment implements Observer{
 		if(view_created){
 		
 			String action = robot_in.getAction();
+			String alimentation = robot_in.getAlimentationValue();
 			String variateur=robot_in.getVariateur();
 			String statut=robot_in.getStatut();
 			
 			program_value.setText(action);
+			alimentation_value.setText(alimentation);
 			variateur_value.setText(variateur);
 			statut_value.setText(statut);
 			
