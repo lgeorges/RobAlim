@@ -1,9 +1,13 @@
 package com.arduino.robalim.arduino;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.arduino.robalim.MainMenu;
 
 import android.app.Activity;
 import android.content.IntentFilter;
+import android.content.PeriodicSync;
 import android.util.Log;
 import at.abraxas.amarino.Amarino;
 import at.abraxas.amarino.AmarinoIntent;
@@ -13,6 +17,9 @@ public class ConnectionManager {
 	private ArduinoReceiver arduino_receiver;
 	private ArduinoConnectionTester arduino_connection_tester;
 	private String device_address;
+	private Activity main_activity;
+	private Timer connection_timer;
+	private boolean is_connected;
 	
 	public ConnectionManager(){
 		super();
@@ -36,10 +43,10 @@ public class ConnectionManager {
 		device_address=address;
 		activity.registerReceiver(arduino_receiver, new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
 		activity.registerReceiver(arduino_connection_tester, new IntentFilter(AmarinoIntent.ACTION_CONNECTED));
-		activity.registerReceiver(new ArduinoConnectionTester(), new IntentFilter(AmarinoIntent.ACTION_DISCONNECTED));
 
 		Amarino.connect(activity, address);
-		((MainMenu)activity).updateConnection(true);
+		main_activity=activity;
+		this.checkConnection();
 	}
 	
 	public void disconnectDevices(Activity activity){
@@ -49,4 +56,36 @@ public class ConnectionManager {
 			activity.unregisterReceiver(arduino_receiver);
 		}
 	}
+	
+	private void checkConnection(){
+		
+		connection_timer = new Timer();
+		TimerTask task = new TimerTask(){
+
+			@Override
+			public void run() {
+				main_activity.runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						updateConnectionView();
+						
+					}
+				});
+				
+				is_connected=false;
+			}};
+			
+		connection_timer.schedule(task, 0, 1000);
+	}
+	
+	public void updateConnection(boolean connected){
+		this.is_connected=connected;
+	}
+	
+	private void updateConnectionView(){
+		((MainMenu)main_activity).updateConnectionView(is_connected);
+	}
+	
+	
 }

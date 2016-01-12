@@ -1,5 +1,10 @@
 package com.arduino.robalim.arduino;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
+import com.arduino.robalim.MainMenu;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,18 +13,18 @@ import at.abraxas.amarino.AmarinoIntent;
 
 public class ArduinoConnectionTester extends BroadcastReceiver{
 	
-	private RobAlimInterfaceIn robot_in;
+	private ConnectionManager connection_manager;
 	
 	public ArduinoConnectionTester() {
 		super();
-		robot_in=RobAlimInterfaceIn.getInstance();
-		Log.i("ArduinoReceiver","constructor "+robot_in);
+		connection_manager=ConnectionManager.getInstance();
 	}
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		Log.w("ArduinoConnectionTester"," connected " +intent.toString());
 		String data = null;
+		connection_manager.updateConnection(true);
 	}
 
 }

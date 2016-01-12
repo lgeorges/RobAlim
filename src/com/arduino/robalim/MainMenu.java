@@ -183,7 +183,10 @@ public class MainMenu extends Activity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
     
-    public void updateConnection(boolean connected){
-    	connection_btn.setIcon(R.drawable.connection_on);
+    public void updateConnectionView(boolean connected){
+    	if(connected)
+    		connection_btn.setIcon(R.drawable.connection_on);
+    	else
+    		connection_btn.setIcon(R.drawable.connection_off);
     }
 }

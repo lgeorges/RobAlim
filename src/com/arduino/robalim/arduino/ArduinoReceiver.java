@@ -9,10 +9,12 @@ import at.abraxas.amarino.AmarinoIntent;
 public class ArduinoReceiver extends BroadcastReceiver{
 	
 	private RobAlimInterfaceIn robot_in;
+	private ConnectionManager connectionManager;
 	
 	public ArduinoReceiver() {
 		super();
 		robot_in=RobAlimInterfaceIn.getInstance();
+		connectionManager=ConnectionManager.getInstance();
 		Log.i("ArduinoReceiver","constructor "+robot_in);
 	}
 
@@ -38,6 +40,8 @@ public class ArduinoReceiver extends BroadcastReceiver{
 				Log.i("ArduinoReceiver","data not null");
 				Log.i("ArduinoReceiver","robot_in: " +robot_in);
 				robot_in.updateData(data_type, data);
+				connectionManager.updateConnection(true);
+				
 //				mValueTV.setText(data);
 //				try {
 					// since we know that our string value is an int number we can parse it to an integer
