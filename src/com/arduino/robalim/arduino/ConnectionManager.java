@@ -72,14 +72,13 @@ public class ConnectionManager {
 					@Override
 					public void run() {
 						updateConnectionView();
-						
+			//			Log.d("Update Connection", "boolean "+is_connected);
+						is_connected=false;
 					}
 				});
-				
-				is_connected=false;
 			}};
 			
-		connection_timer.schedule(task, 0, 1000);
+		connection_timer.schedule(task, 0, 500);
 	}
 	
 	public void updateConnection(boolean connected){
@@ -87,6 +86,7 @@ public class ConnectionManager {
 	}
 	
 	private void updateConnectionView(){
+		//Log.d("Update Connection", "view");
 		((MainMenu)main_activity).updateConnectionView(is_connected);
 	}
 	

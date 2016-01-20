@@ -85,7 +85,7 @@ public class RobAlimInterfaceIn extends Observable {
 		String[] parts = data.split("/");
 		String identifiant = parts[0]; // 004
 		
-		Log.i("RobAlimIn","id: "+parts[0]+" data "+parts[1]);
+		Log.v("RobAlimIn","id: "+parts[0]+" data "+parts[1]);
 		
 		if(identifiant.equalsIgnoreCase("mode")){
 			if(parts[1].equals("auto"))
@@ -101,17 +101,17 @@ public class RobAlimInterfaceIn extends Observable {
 			AvancementEnum a = AvancementEnum.values()[Integer.parseInt(parts[2])];
 			FinActionEnum fa = FinActionEnum.values()[Integer.parseInt(parts[3])];
 			short d = Short.parseShort(parts[4]);
-			Log.d("MSG IN", a+" "+fa+" "+d);
+			Log.v("MSG IN", a+" "+fa+" "+d);
 			ArrayList<PassageModel> passages = new ArrayList<PassageModel>();
 
 			if(a==AvancementEnum.ULTRASON_GAUCHE && parts.length>5){
 				String[] passages_txt = parts[5].split("\\|");
 				for(String p : passages_txt){
-					Log.d("msg in passage:"," "+p);
+					//Log.d("msg in passage:"," "+p);
 					String [] p_txt = p.split("_");
 					if(p_txt.length>=2){
 						passages.add(new PassageModel(Short.parseShort(p_txt[0]), Integer.parseInt(p_txt[1])));
-						Log.d("msg in passage:"," "+p_txt[0]+" "+p_txt[1]);
+						//Log.d("msg in passage:"," "+p_txt[0]+" "+p_txt[1]);
 					}
 					
 				}
