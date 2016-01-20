@@ -59,6 +59,9 @@ public class ConnectionManager {
 	
 	private void checkConnection(){
 		
+		if(connection_timer != null)
+			connection_timer.cancel();
+		
 		connection_timer = new Timer();
 		TimerTask task = new TimerTask(){
 
