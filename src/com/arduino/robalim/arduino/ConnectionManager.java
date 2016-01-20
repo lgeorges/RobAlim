@@ -23,8 +23,8 @@ public class ConnectionManager {
 	
 	public ConnectionManager(){
 		super();
-		arduino_receiver= new ArduinoReceiver();
-		arduino_connection_tester = new ArduinoConnectionTester();
+		arduino_receiver= new ArduinoReceiver(this, RobAlimInterfaceIn.getInstance());
+		arduino_connection_tester = new ArduinoConnectionTester(this);
 	}
 	public static ConnectionManager getInstance(){
 		return instance;

@@ -15,9 +15,9 @@ public class ArduinoConnectionTester extends BroadcastReceiver{
 	
 	private ConnectionManager connection_manager;
 	
-	public ArduinoConnectionTester() {
+	public ArduinoConnectionTester(ConnectionManager connection_manager) {
 		super();
-		connection_manager=ConnectionManager.getInstance();
+		this.connection_manager=connection_manager;
 	}
 
 	@Override

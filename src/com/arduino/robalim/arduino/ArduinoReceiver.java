@@ -11,10 +11,10 @@ public class ArduinoReceiver extends BroadcastReceiver{
 	private RobAlimInterfaceIn robot_in;
 	private ConnectionManager connectionManager;
 	
-	public ArduinoReceiver() {
+	public ArduinoReceiver(ConnectionManager connection_manager, RobAlimInterfaceIn rob_alim_in) {
 		super();
-		robot_in=RobAlimInterfaceIn.getInstance();
-		connectionManager=ConnectionManager.getInstance();
+		robot_in=rob_alim_in;
+		connectionManager=connection_manager;
 		Log.i("ArduinoReceiver","constructor "+robot_in);
 	}
 
