@@ -238,9 +238,11 @@
 		    </TableRow>
 		</TableLayout>
 		
+				
 		<Space
 		    android:layout_width="match_parent"
 		    android:layout_height="30dp" />
+		
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -257,8 +259,10 @@
 				android:layout_width="match_parent"
 			    android:layout_height="wrap_content"
 			    android:text="Test"
-			    android:textAppearance="?android:attr/textAppearanceLarge" />    
-		    
+			    android:textAppearance="?android:attr/textAppearanceLarge" />
+				
+					
+			    
 		</LinearLayout>
 		<Space
 		    android:layout_width="match_parent"
@@ -315,7 +319,7 @@
 			<TextView
 				android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:text="Alimentation: "
+			    android:text="Passage alimentation n° "
 			    android:textAppearance="?android:attr/textAppearanceLarge" />
 			<TextView
 			    android:id="@+id/alimentation_value"

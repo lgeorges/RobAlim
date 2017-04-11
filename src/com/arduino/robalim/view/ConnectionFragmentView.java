@@ -78,7 +78,7 @@ public class ConnectionFragmentView extends Fragment {
         
 //        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 //        DEVICE_ADDRESS = prefs.getString("device", "20:14:12:23:10:40");
-        idField.setText("20:14:12:23:10:40");
+        idField.setText("00:14:03:12:42:32");
         return rootView;
     }
 }
