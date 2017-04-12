@@ -32,6 +32,8 @@ public class IndicationsFragmentView extends Fragment implements Observer{
 	private TextView alimentation_value;
 	private TextView statut_value;
 	private TextView variateur_value;
+	private TextView consigne_value;
+	private TextView vitessealim_value;
 	private TextView ultrason_instant_0;
 	private TextView ultrason_mean_0;
 	private TextView ultrason_instant_1;
@@ -78,6 +80,8 @@ public class IndicationsFragmentView extends Fragment implements Observer{
         alimentation_value = (TextView)rootView.findViewById(R.id.alimentation_value);
         variateur_value= (TextView)rootView.findViewById(R.id.variateur_value);
         statut_value= (TextView)rootView.findViewById(R.id.statut_value);
+        consigne_value= (TextView)rootView.findViewById(R.id.consigne_value);
+        vitessealim_value= (TextView)rootView.findViewById(R.id.vitessealim_value);
         
         send_action_button = (Button)rootView.findViewById(R.id.send_action_button);
         send_action_button.setOnClickListener(new OnClickListener() {
@@ -113,11 +117,16 @@ public class IndicationsFragmentView extends Fragment implements Observer{
 			String alimentation = robot_in.getAlimentationValue();
 			String variateur=robot_in.getVariateur();
 			String statut=robot_in.getStatut();
+			int consigne = robot_in.getBorderValue();
+			int vitesse_alim = robot_in.getDistributionValue();
+			
 			
 			program_value.setText(action);
 			alimentation_value.setText(alimentation);
 			variateur_value.setText(variateur);
 			statut_value.setText(statut);
+			consigne_value.setText(consigne+"");
+			vitessealim_value.setText(vitesse_alim+"");
 			
 			int [] ultrasons = robot_in.getUltrasonValues();
 			int [] inductifs = robot_in.getInductifValues();

@@ -238,11 +238,9 @@
 		    </TableRow>
 		</TableLayout>
 		
-				
 		<Space
 		    android:layout_width="match_parent"
 		    android:layout_height="30dp" />
-		
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -259,10 +257,27 @@
 				android:layout_width="match_parent"
 			    android:layout_height="wrap_content"
 			    android:text="Test"
+			    android:textAppearance="?android:attr/textAppearanceLarge" />    
+		    
+		</LinearLayout>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal" >
+			
+			<TextView
+				android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Trajet n°: "
 			    android:textAppearance="?android:attr/textAppearanceLarge" />
-				
-					
-			    
+			
+			<TextView
+			    android:id="@+id/consigne_value"
+				android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:text="Test"
+			    android:textAppearance="?android:attr/textAppearanceLarge" />    
+		    
 		</LinearLayout>
 		<Space
 		    android:layout_width="match_parent"
@@ -319,7 +334,7 @@
 			<TextView
 				android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:text="Passage alimentation n° "
+			    android:text="Alimentation: "
 			    android:textAppearance="?android:attr/textAppearanceLarge" />
 			<TextView
 			    android:id="@+id/alimentation_value"
@@ -327,7 +342,7 @@
 			    android:layout_height="wrap_content"
 			    android:text="Test"
 			    android:textAppearance="?android:attr/textAppearanceLarge" />
-			</LinearLayout>
+		</LinearLayout>
 			
 		<LinearLayout
 			android:layout_width="match_parent"
@@ -349,7 +364,25 @@
 		        android:layout_gravity="right"
 		        android:text="Changer" />
 		    </LinearLayout>
-		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal" >
+			
+			<TextView
+				android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Vitesse aliment: "
+			    android:textAppearance="?android:attr/textAppearanceLarge" />
+			
+			<TextView
+			    android:id="@+id/vitessealim_value"
+				android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:text="Test"
+			    android:textAppearance="?android:attr/textAppearanceLarge" />    
+		    
+		</LinearLayout>
 		
 	</LinearLayout>
 </HorizontalScrollView>
